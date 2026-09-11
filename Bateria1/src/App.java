@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-
-
        
         /*
         ejercicio1();
@@ -23,14 +21,11 @@ public class App {
         ejercicio13();
         ejercicio14();
         ejercicio15();
-
-
+        ejercicio16();
+        ejercicio17();
+        ejercicio18();
        
         */
-
-
-        ejercicio16();
-
 
     }
    
@@ -59,7 +54,6 @@ public class App {
         teclado.close();
     }
 
-
     public static void ejercicio4(){
         Scanner teclado = new Scanner(System.in);
 
@@ -79,7 +73,6 @@ public class App {
         teclado.close();
     }
 
-
     public static void ejercicio5(){
         Scanner teclado = new Scanner(System.in);
 
@@ -95,7 +88,6 @@ public class App {
 
         teclado.close();
     }
-
 
     public static void ejercicio6(){
         Scanner teclado = new Scanner(System.in);
@@ -117,7 +109,6 @@ public class App {
         teclado.close();
     }
 
-
     public static void ejercicio7(){
         Scanner teclado = new Scanner(System.in);
 
@@ -131,7 +122,6 @@ public class App {
         teclado.close();
     }
 
-
     public static void ejercicio8(){
         Scanner teclado = new Scanner(System.in);
 
@@ -143,7 +133,6 @@ public class App {
 
         teclado.close();
     }
-
 
     public static void ejercicio9(){
         Scanner teclado = new Scanner(System.in);
@@ -157,7 +146,6 @@ public class App {
 
         teclado.close();
     }
-
 
     public static void ejercicio10(){
         Scanner teclado = new Scanner(System.in);
@@ -179,7 +167,6 @@ public class App {
         teclado.close();
     }
 
-
     public static void ejercicio11(){
         Scanner teclado = new Scanner(System.in);
 
@@ -197,7 +184,6 @@ public class App {
         teclado.close();
     }
 
-
     public static void ejercicio12(){
         Scanner teclado = new Scanner(System.in);
 
@@ -211,7 +197,6 @@ public class App {
 
         teclado.close();
     }
-
 
     public static void ejercicio13(){
         Scanner teclado = new Scanner(System.in);
@@ -230,7 +215,6 @@ public class App {
         teclado.close();
     }
 
-
     public static void ejercicio14(){
         Scanner teclado = new Scanner(System.in);
 
@@ -248,7 +232,6 @@ public class App {
 
         teclado.close();
     }
-
 
     public static void ejercicio15(){
         Scanner teclado = new Scanner(System.in);
@@ -270,7 +253,6 @@ public class App {
         teclado.close();
     }
 
-
     public static void ejercicio16(){
         Scanner teclado = new Scanner(System.in);
 
@@ -290,46 +272,114 @@ public class App {
         teclado.close();
     }
 
+    public static void ejercicio17(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Introduce las horas: ");
+        int horas = sc.nextInt();
+
+        System.out.print("Introduce los minutos: ");
+        int minutos = sc.nextInt();
+
+        System.out.print("Introduce los segundos: ");
+        int segundos = sc.nextInt();
+
+        segundos++;
+
+        if (segundos == 60) {
+            segundos = 0;
+            minutos++;
+        }
+
+        if (minutos == 60) {
+            minutos = 0;
+            horas++;
+        }
+
+        if (horas == 24) {
+            horas = 0;
+        }
+
+        System.out.println("La hora dentro de un segundo será: "
+                + horas + ":" + minutos + ":" + segundos);
+
+        sc.close();
+    }
+
+    public static void ejercicio18(){
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Introduce el nombre: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Introduce las horas trabajadas: ");
+        double horas = sc.nextDouble();
+
+        System.out.print("Introduce la tarifa por hora: ");
+        double tarifa = sc.nextDouble();
+
+        // Calcular salario bruto
+        double salarioBruto;
+
+        if (horas <= 35) {
+            salarioBruto = horas * tarifa;
+        } else {
+            salarioBruto = (35 * tarifa) + ((horas - 35) * tarifa * 1.5);
+        }
+
+        // Calcular impuestos
+        double impuestos;
+
+        if (salarioBruto <= 500) {
+            impuestos = 0;
+        } else if (salarioBruto <= 900) {
+            impuestos = (salarioBruto - 500) * 0.25;
+        } else {
+            impuestos = (400 * 0.25) + ((salarioBruto - 900) * 0.45);
+        }
+
+        // Calcular salario neto
+        double salarioNeto = salarioBruto - impuestos;
+
+        // Mostrar resultados
+        System.out.println("\n--- DATOS DEL TRABAJADOR ---");
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Salario bruto: " + salarioBruto + " €");
+        System.out.println("Impuestos: " + impuestos + " €");
+        System.out.println("Salario neto: " + salarioNeto + " €");
+
+        sc.close();
+    }
 
 
-
-    //--- MÉTODOS AUXILIARES ---
+    //--- METODOS AUXILIARES ---
     public static int suma(int a, int b){
         return a + b;
     }
-
 
     public static int resta(int a, int b){
         return a - b;
     }
 
-
     public static int multiplicacion(int a, int b){
         return a * b;
     }
-
 
     public static int division(int a, int b){
         return a/b;
     }
 
-
     public static double longitudCircunferencia(int radio){
         return 2 * Math.PI * radio;
     }
-
 
     public static double areaCircunferencia(int radio){
         return (radio * radio) * Math.PI;
     }
 
-
     public static double volumenEsfera(int radio){
         return (4/3) * Math.PI * radio;
     }
-
-
    
-
 
 }
