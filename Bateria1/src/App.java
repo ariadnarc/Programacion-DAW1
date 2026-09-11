@@ -41,27 +41,27 @@ public class App {
     }
    
     public static void ejercicio3(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la longitud en cm del lado del cuadrado: ");
-        int lado = teclado.nextInt();
+        int lado = sc.nextInt();
 
 
         ejercicio2(lado);
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio4(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la primera cifra: ");
-        int num1 = teclado.nextInt();
+        int num1 = sc.nextInt();
         System.out.println("Introduzca la segunda cifra: ");
-        int num2 = teclado.nextInt();
+        int num2 = sc.nextInt();
 
 
         System.out.println("La suma de " + num1 + " + " + num2 + " es igual a " + suma(num1, num2) );
@@ -70,15 +70,15 @@ public class App {
         System.out.println("La división de " + num1 + " entre " + num2 + " es igual a " + division(num1, num2) );
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio5(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la longitud del radio en cm: ");
-        int radio = teclado.nextInt();
+        int radio = sc.nextInt();
 
 
         System.out.println("La longitud de la circunferencia es de " + longitudCircunferencia(radio) + "cm.");
@@ -86,17 +86,17 @@ public class App {
         System.out.println("El volumen de la esfera es de " + volumenEsfera(radio) + "cm3.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio6(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca el precio al que se vende el artículo: ");
-        float precioFinal = teclado.nextFloat();
+        float precioFinal = sc.nextFloat();
         System.out.println("Introduzca el precio original del artículo: ");
-        float precioOriginal = teclado.nextFloat();
+        float precioOriginal = sc.nextFloat();
 
 
         float porcentajeCompra = (precioFinal *  100) / precioOriginal;
@@ -106,55 +106,55 @@ public class App {
         System.out.println("El artículo presenta un " + descuento + "% de descuento.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio7(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la distancia en millas marítimas: ");
-        int millas = teclado.nextInt();
+        int millas = sc.nextInt();
         double metros = millas * 1.852;
         System.out.println("La distancia corresponde a " + metros + "metros.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio8(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca su edad: ");
-        int edad = teclado.nextInt();
+        int edad = sc.nextInt();
         if(edad >= 18) System.out.println("Eres mayor de edad.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio9(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca su edad: ");
-        int edad = teclado.nextInt();
+        int edad = sc.nextInt();
         if(edad >= 18) System.out.println("Eres mayor de edad.");
         else System.out.println("Eres menor de edad.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio10(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la primera cifra: ");
-        int num1 = teclado.nextInt();
+        int num1 = sc.nextInt();
         System.out.println("Introduzca la segunda cifra: ");
-        int num2 = teclado.nextInt();
+        int num2 = sc.nextInt();
 
 
         System.out.println("La suma de " + num1 + " + " + num2 + " es igual a " + suma(num1, num2) );
@@ -164,65 +164,65 @@ public class App {
         else System.out.println("No es posible realizar esta división.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio11(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la primera cifra: ");
-        int num1 = teclado.nextInt();
+        int num1 = sc.nextInt();
         System.out.println("Introduzca la segunda cifra: ");
-        int num2 = teclado.nextInt();
+        int num2 = sc.nextInt();
 
 
         if(num1 > num2) System.out.println(num1 + "es mayor que " + num2 );
         else System.out.println(num2 + " es mayor que " + num1 );
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio12(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la cifra: ");
-        int num = teclado.nextInt();
+        int num = sc.nextInt();
        
         if(num >= 0) System.out.println("Es positivo.");
         else System.out.println("Es negativo.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio13(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la primera cifra: ");
-        int num1 = teclado.nextInt();
+        int num1 = sc.nextInt();
         System.out.println("Introduzca la segunda cifra: ");
-        int num2 = teclado.nextInt();
+        int num2 = sc.nextInt();
 
 
         if(num1 > num2) System.out.println(num2 + ", " + num1 );
         else System.out.println(num1 + ", " + num2 );
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio14(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la primera cifra: ");
-        int num1 = teclado.nextInt();
+        int num1 = sc.nextInt();
         System.out.println("Introduzca la segunda cifra: ");
-        int num2 = teclado.nextInt();
+        int num2 = sc.nextInt();
 
 
         if(num1 > num2) System.out.println(num1 + " es mayor que " + num2 );
@@ -230,19 +230,19 @@ public class App {
         else System.out.println("Las cifras son iguales.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio15(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la primera cifra: ");
-        int num1 = teclado.nextInt();
+        int num1 = sc.nextInt();
         System.out.println("Introduzca la segunda cifra: ");
-        int num2 = teclado.nextInt();
+        int num2 = sc.nextInt();
         System.out.println("Introduzca la tercera cifra: ");
-        int num3 = teclado.nextInt();
+        int num3 = sc.nextInt();
 
 
         if(num1 > num2 && num1 > num3) System.out.println(num1 + " es la cifra mayor.");
@@ -250,26 +250,25 @@ public class App {
         else System.out.println(num3 + " es la cifra mayor.");
 
 
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio16(){
-        Scanner teclado = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
         System.out.println("Introduzca la nota: ");
-        double nota = teclado.nextDouble();
+        double nota = sc.nextDouble();
 
 
-        if(nota >= 0 && nota < 3) System.out.println( "Muy deficiente.");
-        if(nota >= 3 && nota < 5) System.out.println( "Insuficiente.");
-        if(nota >= 5 && nota < 6) System.out.println( "Bien.");
-        if(nota >= 6 && nota < 9) System.out.println( "Notable.");
-        if(nota >= 9 && nota < 10) System.out.println( "Sobresaliente.");
+        if (nota >= 0 && nota < 3) System.out.println("Muy deficiente.");
+        else if (nota < 5) System.out.println("Insuficiente.");
+        else if (nota < 6) System.out.println("Bien.");
+        else if (nota < 9) System.out.println("Notable.");
+        else if (nota <= 10) System.out.println("Sobresaliente.");
         else System.out.println("La nota introducida no es válida.");
 
-
-        teclado.close();
+        sc.close();
     }
 
     public static void ejercicio17(){
@@ -365,8 +364,8 @@ public class App {
         return a * b;
     }
 
-    public static int division(int a, int b){
-        return a/b;
+    public static double division(int a, int b){
+        return (double) a / b;
     }
 
     public static double longitudCircunferencia(int radio){
@@ -378,7 +377,7 @@ public class App {
     }
 
     public static double volumenEsfera(int radio){
-        return (4/3) * Math.PI * radio;
+        return (4.0 / 3.0) * Math.PI * Math.pow(radio, 3);
     }
    
 
