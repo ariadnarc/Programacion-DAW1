@@ -17,7 +17,7 @@ public class App {
         
         do{
             //--- MENU INICIAL ---
-            System.out.println("Introduzca un número del 1 al 18 para ejecutar un ejercicio.");
+            System.out.println("\n Introduzca un número del 1 al 18 para ejecutar un ejercicio.");
 
             if(sc.hasNextInt()){
                 ej = sc.nextInt();
@@ -291,11 +291,7 @@ public class App {
         // Calcular salario bruto
         double salarioBruto;
         
-        if (horas <= 35) {
-            salarioBruto = horas * tarifa;
-        } else {
-            salarioBruto = (35 * tarifa) + ((horas - 35) * tarifa * 1.5);
-        }
+        salarioBruto = horas <= 35 ? horas * tarifa : (35 * tarifa) + ((horas - 35) * tarifa * 1.5);
         
         // Calcular impuestos
         double impuestos;
@@ -314,9 +310,9 @@ public class App {
         // Mostrar resultados
         System.out.println("\n--- DATOS DEL TRABAJADOR ---");
         System.out.println("Nombre: " + nombre);
-        System.out.println("Salario bruto: " + salarioBruto + " €");
-        System.out.println("Impuestos: " + impuestos + " €");
-        System.out.println("Salario neto: " + salarioNeto + " €");
+        System.out.println("Salario bruto: " + salarioBruto + " euros");
+        System.out.println("Impuestos: " + impuestos + " euros");
+        System.out.println("Salario neto: " + salarioNeto + " euros");
     }
     
     
