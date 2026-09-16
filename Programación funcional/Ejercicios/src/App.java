@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.function.Function;
 
 
 public class App {
@@ -10,15 +11,8 @@ public class App {
         /*
         ejercicio1();
 
-        //EJERCICIO 2
-        int lado = 5;
-        Function<Double, Double> calcularArea = lado -> lado * lado;
-
-        double area = calcularArea.apply(5.0);
-
-        System.out.println("El área del cuadrado es: " + area);
-
-
+        ejercicio2();
+        
         ejercicio3();
         ejercicio4();
         ejercicio5();
@@ -48,11 +42,25 @@ public class App {
     }
     
     public static void ejercicio2(){
-        
+        double lado = 5;
+
+        Function<Double, Double> calcularArea = x -> x * x;
+
+        double area = calcularArea.apply(lado);
+
+        System.out.println("El área del cuadrado es: " + area);
     }
     
     public static void ejercicio3(){
-        
+
+        System.out.print("Introduce el lado del cuadrado: ");
+        double lado = sc.nextDouble();
+
+        Function<Double, Double> calcularArea = x -> x * x;
+
+        double area = calcularArea.apply(lado);
+
+        System.out.println("El área del cuadrado es: " + area);
 
 
         
