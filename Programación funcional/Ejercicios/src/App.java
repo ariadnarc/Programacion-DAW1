@@ -100,8 +100,6 @@ public class App {
     public static void ejercicio2(){
         double lado = 5;
 
-        Function<Double, Double> calcularArea = x -> x * x;
-
         double area = calcularArea.apply(lado);
 
         System.out.println("El área del cuadrado es: " + area);
@@ -124,10 +122,10 @@ public class App {
         System.out.println("Introduzca la segunda cifra: ");
         int num2 = sc.nextInt();
         
-        System.out.println("La suma de " + num1 + " + " + num2 + " es igual a " + add.apply(num1, num2) );
-        System.out.println("La resta de " + num1 + " - " + num2 + " es igual a " + substract.apply(num1, num2) );
-        System.out.println("El producto de " + num1 + " x " + num2 + " es igual a " + multiply.apply(num1, num2) );
-        System.out.println("La división de " + num1 + " entre " + num2 + " es igual a " + divide.apply(num1, num2) );
+        System.out.println("La suma de " + num1 + " + " + num2 + " es igual a " + ADD.apply(num1, num2) );
+        System.out.println("La resta de " + num1 + " - " + num2 + " es igual a " + SUBSTRACT.apply(num1, num2) );
+        System.out.println("El producto de " + num1 + " x " + num2 + " es igual a " + MULTIPLY.apply(num1, num2) );
+        System.out.println("La división de " + num1 + " entre " + num2 + " es igual a " + DIVIDE.apply(num1, num2) );
         
     }
     
@@ -163,7 +161,7 @@ public class App {
         System.out.println("La distancia corresponde a " + milesConversor.apply(millas) + " metros.");
     }
     
-    public static void ejercicio8y9(Boolean res){
+    public static void ejercicio8y9(boolean res){
         System.out.println("Introduzca su edad: ");
         int edad = sc.nextInt();
 
@@ -178,10 +176,10 @@ public class App {
         int num2 = sc.nextInt();
         
         
-        System.out.println("La suma de " + num1 + " + " + num2 + " es igual a " + add.apply(num1, num2) );
-        System.out.println("La resta de " + num1 + " - " + num2 + " es igual a " + substract.apply(num1, num2) );
-        System.out.println("El producto de " + num1 + " x " + num2 + " es igual a " + multiply.apply(num1, num2) );
-        if(num2 != 0) System.out.println("La división de " + num1 + " entre " + num2 + " es igual a " + divide.apply(num1, num2) );
+        System.out.println("La suma de " + num1 + " + " + num2 + " es igual a " + ADD.apply(num1, num2) );
+        System.out.println("La resta de " + num1 + " - " + num2 + " es igual a " + SUBSTRACT.apply(num1, num2) );
+        System.out.println("El producto de " + num1 + " x " + num2 + " es igual a " + MULTIPLY.apply(num1, num2) );
+        if(num2 != 0) System.out.println("La división de " + num1 + " entre " + num2 + " es igual a " + DIVIDE.apply(num1, num2) );
         else System.out.println("No es posible realizar esta división.");
     }
     
@@ -207,7 +205,7 @@ public class App {
         System.out.println("Introduzca la segunda cifra: ");
         int num2 = sc.nextInt();
         
-        if(num1 > num2) System.out.println(num1>num2 ? num2 + ", " + num1 : num1 + ", " + num2);
+        System.out.println(num1>num2 ? num2 + ", " + num1 : num1 + ", " + num2);
     }
     
     public static void ejercicio14(){
@@ -239,13 +237,7 @@ public class App {
         System.out.println("Introduzca la nota: ");
         double nota = sc.nextDouble();
         
-        
-        if (nota >= 0 && nota < 3) System.out.println("Muy deficiente.");
-        else if (nota < 5) System.out.println("Insuficiente.");
-        else if (nota < 6) System.out.println("Bien.");
-        else if (nota < 9) System.out.println("Notable.");
-        else if (nota <= 10) System.out.println("Sobresaliente.");
-        else System.out.println("La nota introducida no es válida.");
+        System.out.println(calcularNota.apply(nota));
     }
     
     public static void ejercicio17(){
@@ -293,19 +285,9 @@ public class App {
         
         salarioBruto = horas <= 35 ? horas * tarifa : (35 * tarifa) + ((horas - 35) * tarifa * 1.5);
         
-        // Calcular impuestos
-        double impuestos;
-        
-        if (salarioBruto <= 500) {
-            impuestos = 0;
-        } else if (salarioBruto <= 900) {
-            impuestos = (salarioBruto - 500) * 0.25;
-        } else {
-            impuestos = (400 * 0.25) + ((salarioBruto - 900) * 0.45);
-        }
-        
-        // Calcular salario neto
-        double salarioNeto = salarioBruto - impuestos;
+        // Calcular impuestos y salario neto
+        double impuestos = calcularImpuestos.apply(salarioBruto);
+        double salarioNeto = calcularNeto.apply(salarioBruto);
         
         // Mostrar resultados
         System.out.println("\n--- DATOS DEL TRABAJADOR ---");
@@ -320,10 +302,10 @@ public class App {
 
     public static Function<Double, Double> calcularArea = x -> x * x;
 
-    public static BinaryOperator<Integer> add = (a, b) -> a + b;
-    public static BinaryOperator<Integer> substract = (a, b) -> a - b;
-    public static BinaryOperator<Integer> multiply = (a, b) -> a * b;
-    public static BinaryOperator<Integer> divide = (a, b) -> a / b;
+    public static final BinaryOperator<Integer> ADD = (a, b) -> a + b;
+    public static final BinaryOperator<Integer> SUBSTRACT = (a, b) -> a - b;
+    public static final BinaryOperator<Integer> MULTIPLY = (a, b) -> a * b;
+    public static final BinaryOperator<Integer> DIVIDE = (a, b) -> a / b;
 
     public static Function<Double, Double> circleLength = (r) -> 2 * Math.PI * r;
     public static Function<Double, Double> circleSurface = (r) -> (r * r) * Math.PI;
@@ -331,6 +313,26 @@ public class App {
 
     public static Predicate<Integer> isAdult = age -> age >= 18;
     public static BiPredicate<Integer, Integer> isBigger = (a, b) -> a > b;
-    public static BiPredicate<Integer, Integer> isEqual = (a, b) -> a == b;
+
+    public static Function<Double, String> calcularNota = nota -> {
+    if (nota >= 0 && nota < 3) return "Muy deficiente.";
+    if (nota < 5) return "Insuficiente.";
+    if (nota < 6) return "Bien.";
+    if (nota < 9) return "Notable.";
+    if (nota <= 10) return "Sobresaliente.";
+    return "La nota introducida no es válida.";
+    };
+
+    public static Function<Double, Double> calcularImpuestos = salario -> {
+    if (salario <= 500) {
+        return 0.0;
+    } else if (salario <= 900) {
+        return (salario - 500) * 0.25;
+    } else {
+        return (400 * 0.25) + ((salario - 900) * 0.45);
+    }
+    };
+    public static Function<Double, Double> calcularNeto =
+        salario -> salario - calcularImpuestos.apply(salario);
 
 }
