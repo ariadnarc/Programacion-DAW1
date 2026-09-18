@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         
-        ejercicio6();
+        ejercicio8();
         sc.close();
     }
 
@@ -127,6 +127,74 @@ public class App {
         double precioFinal = precio - ((precio * descuento) / 100);
 
         System.out.println(("El precio final es de " + precioFinal + " euros."));
+    }
+
+    //Calculadora de piedra papel o tijera
+    public static void ejercicio7(){
+        System.out.println("Bienvenido al juego de piedra, papel o tijera. \nIntroduzca una elección teniendo en cuenta que 1 = Piedra, 2 = Papel y 3 = Tijera");
+        System.out.println("Jugador 1: ");
+        int j1 = sc.nextInt();
+        System.out.println("Jugador 2: ");
+        int j2 = sc.nextInt();
+
+        if(j1 >= 1 && j1 <= 3 && j2 >= 1 && j2 <= 3){
+            if(j1 == j2) System.out.println("Empate.");
+            else if (j1 == 1 && j2 == 2 || j1 == 2 && j2 == 3 || j1 == 3 && j2 == 1) System.out.println("Gana el jugador 1");
+            else System.out.println("Gana el jugador 2");
+        }
+        else System.out.println("Las jugadas introducidas no son válidas.");
+    }
+
+    //Ordenacion de 3 numeros
+    public static void ejercicio8(){
+        System.out.println("Introduzca el primer número entero:");
+        int num1 = sc.nextInt();
+        System.out.println("Introduzca el segundo número entero:");
+        int num2 = sc.nextInt();
+        System.out.println("Introduzca el tercer número entero:");
+        int num3 = sc.nextInt();
+
+        int aux1 = 0, aux2 = 0, aux3 = 0;
+
+        if(num1 > num2 && num1 > num3) {
+            aux1 = num1; 
+            if(num2 > num3) { aux2 = num2; aux3 = num3; }
+            else { aux2 = num3; aux3 = num2; }
+        }
+        else if(num2 > num1 && num2 > num3) {
+            aux1 = num2;
+            if(num1 > num3) { aux2 = num1; aux3 = num3; }
+            else { aux2 = num3; aux3 = num1; }
+        }
+        else if(num3 >num1 && num3 > num2) {
+            aux1 = num3;
+            if(num1 > num2) { aux2 = num1; aux3 = num2; }
+            else { aux2 = num2; aux3 = num1; }
+        }
+
+        System.out.println(aux1 + ", " + aux2 + ", " + aux3);
+    }
+
+    //Nomina con horas extras nocturnas
+    public static void ejercicio9(){
+        System.out.println("Introduzca las horas semanales diurnas: ");
+        int horasDiurnas = sc.nextInt();
+        System.out.println("Introduzca las horas semanales nocturnas: ");
+        int horasNocturnas = sc.nextInt();
+
+        int salarioBruto = 0;
+
+        if(horasDiurnas + horasNocturnas >= 40){
+
+        }
+        else salarioBruto = (horasDiurnas * 10) + (horasNocturnas * 15);
+
+        System.out.println("El salario bruto por semana es de " + salarioBruto + " euros.");
+    }
+
+    //Calculadora de IMC detallada
+    public static void ejercicio10(){
+
     }
 
     //---MÉTODOS AUXILIARES---
