@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         
-        ejercicio3();
+        ejercicio6();
         sc.close();
     }
 
@@ -62,28 +62,84 @@ public class App {
         System.out.println("\nintroduzca un mes:");
         int mes = sc.nextInt();
         System.out.println("\nintroduzca un año:");
-        //int anyo = sc.nextInt();
+        int anyo = sc.nextInt();
+
+        boolean valido = false;
 
         if(diaValido.test(dia) && mesValido.test(mes)){
-            
+            if(bisiesto.test(anyo) || febrero.test(mes)) valido = dia > 0 && dia <= 29;
+            else if (febrero.test(mes)) valido = dia > 0 && dia <= 28;
+            else if (mesDe30.test(mes)) valido = dia > 0 && dia <= 30;
+            else valido = dia > 0 && dia <= 31;
+            if(valido) System.out.println("La fecha introducida existe.");
+            else System.out.println("La fecha introducida no existe.");
         }
         else System.out.println("El formato de la fecha no es correcto.");
     }
 
     //Aparcamiento por tramos
     public static void ejercicio4(){
+        System.out.println("Introduzca los minutos estacionados en el parking: ");
+        int minutos = sc.nextInt();
 
+        double precioFinal = 0;
+
+        if(minutos - 360 > 0) precioFinal = 18;
+        else if ( minutos - 120 > 0) { precioFinal += (((minutos - 120) * 0.03) + ((120 - 30) * 0.05)); }
+        else if (minutos - 30 > 0) { precioFinal += ((minutos - 30) * 0.05);}
+
+        System.out.println("El precio a pagar es de " + precioFinal + " euros.");
+    }
+
+    //Clasificacion de cuadrantes y ejes
+    public static void ejercicio5(){
+        System.out.println("Introduzca la coordenada x: ");
+        int x = sc.nextInt();
+        System.out.println("Introduzca la coordenada y: ");
+        int y = sc.nextInt();
+
+        boolean origen =  x == 0 && y == 0;
+        boolean ejeX = x == 0 && y != 0;
+        boolean ejeY = y == 0 && x != 0;
+
+        if (origen) System.out.println("El punto se encuentra sobre el origen.");
+        else if (ejeX) System.out.println("El punto se encuentra sobre el eje X.");
+        else if (ejeY) System.out.println("El punto se encuentra sobre el eje Y.");
+        else if (x < 0 && y > 0) System.out.println("El punto se encuentra en el primer cuadrante.");
+        else if (x > 0 && y > 0) System.out.println("El punto se encuentra en el segundo cuadrante.");
+        else if (x > 0 && y < 0) System.out.println("El punto se encuentra en el cuarto cuadrante");
+        else if (x < 0 && y < 0) System.out.println("El punto se encuentra en el tercer cuadrante.");
+    }
+
+    //Descuento de tienda por categoria y volumen
+    public static void ejercicio6(){
+        System.out.println("Introduzca su categoría de cliente (VIP / ESTANDAR): ");
+        String cat = sc.nextLine();
+        System.out.println("Introduzca el importe a pagar: ");
+        double precio = sc.nextInt();
+
+        double descuento = 0;
+        if(cat == "VIP" || cat == "vip" || cat == "Vip") descuento = 15;
+        else if (cat == "ESTANDAR" || cat == "estandar" || cat == "ESTÁNDAR" || cat == "estándar" || cat == "Estándar" || cat == "Estandar") descuento = 5;
+
+        if (precio >= 200) descuento += 5;
+
+        double precioFinal = precio - ((precio * descuento) / 100);
+
+        System.out.println(("El precio final es de " + precioFinal + " euros."));
     }
 
     //---MÉTODOS AUXILIARES---
     public static Predicate<Integer> diaValido = dia -> dia >= 1 && dia <= 31;
     public static Predicate<Integer> mesValido = mes -> mes > 0 && mes <= 12;
     public static Predicate<Integer> bisiesto = year -> year % 4 == 0 && year % 100 != 0;
+    public static Predicate<Integer> mesDe30 = m -> m == 4 || m == 6 || m == 9 || m == 11;
+    public static Predicate<Integer> febrero = m -> m == 2;
 
     public static void cuantosDiasTiene(int mes, int anyo, int res){
         if(mes == 2 && bisiesto.test(anyo)) res = 29;
-            else if (mes == 2) res = 28;
-            else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) res = 30;
+            else if (febrero.test(mes)) res = 28;
+            else if (mesDe30.test(mes)) res = 30;
             else res = 31;
     }
 }
