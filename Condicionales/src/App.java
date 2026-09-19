@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         
-        ejercicio8();
+        ejercicio10();
         sc.close();
     }
 
@@ -194,7 +194,24 @@ public class App {
 
     //Calculadora de IMC detallada
     public static void ejercicio10(){
+        System.out.println("Introduzca su peso en kilos: ");
+        double peso = sc.nextDouble();
+        System.out.println("Introduzca su altura en m (1,50): ");
+        double altura = sc.nextDouble();
+        System.out.println("Introduzca su edad: ");
+        int edad = sc.nextInt();
 
+        double imc = peso / (altura * altura);
+        String res = "";
+        if(imc < 18.5) {
+            res = "Bajo peso.";
+            if (edad > 65) System.out.println("Atención: Riesgo elevado para la tercera edad.");
+        }
+        else if (imc >= 18.5 && imc < 24.9) res = "Peso normal.";
+        else if (imc >= 24.9 && imc < 29.9) res = "Sobrepeso.";
+        else if (imc >29.9) res = "Obesidad.";
+
+        System.out.println(res);
     }
 
     //---MÉTODOS AUXILIARES---
