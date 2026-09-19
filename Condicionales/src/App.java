@@ -16,43 +16,65 @@ public class App {
 
     //El triángulo válido y su tipo
     public static void ejercicio1(){
-        System.out.println("\n VALIDADOR DE TRIÁNGULOS \n ");
+        System.out.println("\n--- VALIDADOR DE TRIÁNGULOS ---\n");
 
-        System.out.println("\nIntroduzca la longitud en cm del primer lado: ");
+        System.out.println("Introduzca la longitud en cm del primer lado:");
         int lado1 = sc.nextInt();
-        System.out.println("\nIntroduzca la longitud en cm del segundo lado: ");
+
+        System.out.println("Introduzca la longitud en cm del segundo lado:");
         int lado2 = sc.nextInt();
-        System.out.println("\nIntroduzca la longitud en cm del tercer lado: ");
+
+        System.out.println("Introduzca la longitud en cm del tercer lado:");
         int lado3 = sc.nextInt();
 
-        boolean valido = lado1 + lado2 > lado3 ? true : false;
+        boolean valido = lado1 > 0 && lado2 > 0 && lado3 > 0
+                && lado1 + lado2 > lado3
+                && lado1 + lado3 > lado2
+                && lado2 + lado3 > lado1;
 
-        if(valido){
-            String res = " ";
-            if(lado1 == lado2 && lado2 == lado3) res = "equilátero";
-            else if ((lado1 == lado2 && lado1 != lado3) || (lado1 == lado3 && lado1 != lado2) || (lado2 == lado3 && lado2 != lado1)) res = "isósceles";
-            else res = "escaleno";
-            System.out.println("El triángulo es " + res + ".");
+        if (valido) {
+            if (lado1 == lado2 && lado2 == lado3) {
+                System.out.println("El triángulo es equilátero.");
+            } else if (lado1 == lado2 || lado1 == lado3 || lado2 == lado3) {
+                System.out.println("El triángulo es isósceles.");
+            } else {
+                System.out.println("El triángulo es escaleno.");
+            }
+        } else {
+            System.out.println("El triángulo no es válido.");
         }
-        else System.out.println("\nEl triángulo no es válido.");
 
     }
 
     //Días del mes y año bisiesto
     public static void ejercicio2(){
-        System.out.println("\n CALCULADOR DE DÍAS DEL MES \n ");
-        System.out.println("\nIntroduzca el número del mes: ");
+        System.out.println("\n--- CALCULADOR DE DÍAS DEL MES ---\n");
+
+        System.out.println("Introduzca el número del mes:");
         int mes = sc.nextInt();
-        System.out.println("\nIntroduzca el año: ");
+
+        System.out.println("Introduzca el año:");
         int anyo = sc.nextInt();
 
+        if (mes < 1 || mes > 12) {
+            System.out.println("El mes introducido no es válido.");
+        } else {
+            int dias;
 
-        if(mesValido.test(mes)){
-            int res = 0;
-            cuantosDiasTiene(mes, anyo, res);
-            System.out.println("El mes introducido tiene " + res + " días.");
+            if (mes == 2) {
+                if (esBisiesto(anyo)) {
+                    dias = 29;
+                } else {
+                    dias = 28;
+                }
+            } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+                dias = 30;
+            } else {
+                dias = 31;
+            }
+
+            System.out.println("El mes introducido tiene " + dias + " días.");
         }
-        else System.out.println("\nEl mes introducido no es válido.");
     }
 
     //Validador de fecha completa
@@ -67,7 +89,7 @@ public class App {
         boolean valido = false;
 
         if(diaValido.test(dia) && mesValido.test(mes)){
-            if(bisiesto.test(anyo) || febrero.test(mes)) valido = dia > 0 && dia <= 29;
+            if(esBisiesto(anyo) || febrero.test(mes)) valido = dia > 0 && dia <= 29;
             else if (febrero.test(mes)) valido = dia > 0 && dia <= 28;
             else if (mesDe30.test(mes)) valido = dia > 0 && dia <= 30;
             else valido = dia > 0 && dia <= 31;
@@ -220,6 +242,11 @@ public class App {
     public static Predicate<Integer> bisiesto = year -> year % 4 == 0 && year % 100 != 0;
     public static Predicate<Integer> mesDe30 = m -> m == 4 || m == 6 || m == 9 || m == 11;
     public static Predicate<Integer> febrero = m -> m == 2;
+
+    public static boolean esBisiesto(int anyo) {
+        return (anyo % 4 == 0 && anyo % 100 != 0)
+                || anyo % 400 == 0;
+    }
 
     public static void cuantosDiasTiene(int mes, int anyo, int res){
         if(mes == 2 && bisiesto.test(anyo)) res = 29;
