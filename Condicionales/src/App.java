@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.function.Predicate;
 
 
 public class App {
@@ -79,179 +78,272 @@ public class App {
 
     //Validador de fecha completa
     public static void ejercicio3(){
-        System.out.println("\nIntroduzca un día: ");
+        System.out.println("\n--- VALIDADOR DE FECHA ---\n");
+
+        System.out.println("Introduzca un día:");
         int dia = sc.nextInt();
-        System.out.println("\nintroduzca un mes:");
+
+        System.out.println("Introduzca un mes:");
         int mes = sc.nextInt();
-        System.out.println("\nintroduzca un año:");
+
+        System.out.println("Introduzca un año:");
         int anyo = sc.nextInt();
 
-        boolean valido = false;
+        boolean fechaValida = false;
 
-        if(diaValido.test(dia) && mesValido.test(mes)){
-            if(esBisiesto(anyo) || febrero.test(mes)) valido = dia > 0 && dia <= 29;
-            else if (febrero.test(mes)) valido = dia > 0 && dia <= 28;
-            else if (mesDe30.test(mes)) valido = dia > 0 && dia <= 30;
-            else valido = dia > 0 && dia <= 31;
-            if(valido) System.out.println("La fecha introducida existe.");
-            else System.out.println("La fecha introducida no existe.");
+        if (mes >= 1 && mes <= 12 && dia >= 1) {
+
+            int diasDelMes;
+
+            if (mes == 2) {
+                if (esBisiesto(anyo)) {
+                    diasDelMes = 29;
+                } else {
+                    diasDelMes = 28;
+                }
+            } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+                diasDelMes = 30;
+            } else {
+                diasDelMes = 31;
+            }
+
+            if (dia <= diasDelMes) {
+                fechaValida = true;
+            }
         }
-        else System.out.println("El formato de la fecha no es correcto.");
+
+        if (fechaValida) {
+            System.out.println("La fecha introducida es válida.");
+        } else {
+            System.out.println("La fecha introducida no es válida.");
+        }
     }
 
     //Aparcamiento por tramos
     public static void ejercicio4(){
-        System.out.println("Introduzca los minutos estacionados en el parking: ");
+        System.out.println("\n--- TARIFA DE APARCAMIENTO ---\n");
+
+        System.out.println("Introduzca los minutos estacionados:");
         int minutos = sc.nextInt();
 
-        double precioFinal = 0;
+        double precioFinal;
 
-        if(minutos - 360 > 0) precioFinal = 18;
-        else if ( minutos - 120 > 0) { precioFinal += (((minutos - 120) * 0.03) + ((120 - 30) * 0.05)); }
-        else if (minutos - 30 > 0) { precioFinal += ((minutos - 30) * 0.05);}
+        if (minutos <= 0) {
+            precioFinal = 0;
+            System.out.println("El número de minutos no es válido.");
+            return;
+        }
+
+        if (minutos <= 30) {
+            precioFinal = 0;
+        } else if (minutos <= 120) {
+            precioFinal = (minutos - 30) * 0.05;
+        } else if (minutos <= 360) {
+            precioFinal = (90 * 0.05) + ((minutos - 120) * 0.03);
+        } else {
+            precioFinal = 18;
+        }
 
         System.out.println("El precio a pagar es de " + precioFinal + " euros.");
     }
 
     //Clasificacion de cuadrantes y ejes
     public static void ejercicio5(){
-        System.out.println("Introduzca la coordenada x: ");
+        System.out.println("\n--- CLASIFICACIÓN DEL PUNTO ---\n");
+
+        System.out.println("Introduzca la coordenada X:");
         int x = sc.nextInt();
-        System.out.println("Introduzca la coordenada y: ");
+
+        System.out.println("Introduzca la coordenada Y:");
         int y = sc.nextInt();
 
-        boolean origen =  x == 0 && y == 0;
-        boolean ejeX = x == 0 && y != 0;
-        boolean ejeY = y == 0 && x != 0;
-
-        if (origen) System.out.println("El punto se encuentra sobre el origen.");
-        else if (ejeX) System.out.println("El punto se encuentra sobre el eje X.");
-        else if (ejeY) System.out.println("El punto se encuentra sobre el eje Y.");
-        else if (x < 0 && y > 0) System.out.println("El punto se encuentra en el primer cuadrante.");
-        else if (x > 0 && y > 0) System.out.println("El punto se encuentra en el segundo cuadrante.");
-        else if (x > 0 && y < 0) System.out.println("El punto se encuentra en el cuarto cuadrante");
-        else if (x < 0 && y < 0) System.out.println("El punto se encuentra en el tercer cuadrante.");
+        if (x == 0 && y == 0) {
+            System.out.println("El punto se encuentra en el origen.");
+        } else if (y == 0) {
+            System.out.println("El punto se encuentra sobre el eje X.");
+        } else if (x == 0) {
+            System.out.println("El punto se encuentra sobre el eje Y.");
+        } else if (x > 0 && y > 0) {
+            System.out.println("El punto se encuentra en el primer cuadrante.");
+        } else if (x < 0 && y > 0) {
+            System.out.println("El punto se encuentra en el segundo cuadrante.");
+        } else if (x < 0 && y < 0) {
+            System.out.println("El punto se encuentra en el tercer cuadrante.");
+        } else {
+            System.out.println("El punto se encuentra en el cuarto cuadrante.");
+        }
     }
 
     //Descuento de tienda por categoria y volumen
     public static void ejercicio6(){
-        System.out.println("Introduzca su categoría de cliente (VIP / ESTANDAR): ");
-        String cat = sc.nextLine();
-        System.out.println("Introduzca el importe a pagar: ");
-        double precio = sc.nextInt();
+        System.out.println("\n--- DESCUENTO DE TIENDA ---\n");
+
+        System.out.println("Introduzca su categoría de cliente (VIP / ESTANDAR):");
+        String categoria = sc.next();
+
+        System.out.println("Introduzca el importe bruto:");
+        double precio = sc.nextDouble();
 
         double descuento = 0;
-        if(cat == "VIP" || cat == "vip" || cat == "Vip") descuento = 15;
-        else if (cat == "ESTANDAR" || cat == "estandar" || cat == "ESTÁNDAR" || cat == "estándar" || cat == "Estándar" || cat == "Estandar") descuento = 5;
 
-        if (precio >= 200) descuento += 5;
+        if (categoria.equalsIgnoreCase("VIP")) {
+            descuento = 15;
+        } else if (categoria.equalsIgnoreCase("ESTANDAR")
+                || categoria.equalsIgnoreCase("ESTÁNDAR")) {
+            descuento = 5;
+        } else {
+            System.out.println("La categoría introducida no es válida.");
+            return;
+        }
 
-        double precioFinal = precio - ((precio * descuento) / 100);
+        if (precio > 200) {
+            descuento += 5;
+        }
 
-        System.out.println(("El precio final es de " + precioFinal + " euros."));
+        double precioFinal = precio - (precio * descuento / 100);
+
+        System.out.println("Descuento aplicado: " + descuento + "%");
+        System.out.println("Precio final: " + precioFinal + " euros.");
     }
 
     //Calculadora de piedra papel o tijera
     public static void ejercicio7(){
-        System.out.println("Bienvenido al juego de piedra, papel o tijera. \nIntroduzca una elección teniendo en cuenta que 1 = Piedra, 2 = Papel y 3 = Tijera");
-        System.out.println("Jugador 1: ");
+        System.out.println("\n--- PIEDRA, PAPEL O TIJERA ---\n");
+
+        System.out.println("1 = Piedra");
+        System.out.println("2 = Papel");
+        System.out.println("3 = Tijera");
+
+        System.out.println("Jugador 1:");
         int j1 = sc.nextInt();
-        System.out.println("Jugador 2: ");
+
+        System.out.println("Jugador 2:");
         int j2 = sc.nextInt();
 
-        if(j1 >= 1 && j1 <= 3 && j2 >= 1 && j2 <= 3){
-            if(j1 == j2) System.out.println("Empate.");
-            else if (j1 == 1 && j2 == 2 || j1 == 2 && j2 == 3 || j1 == 3 && j2 == 1) System.out.println("Gana el jugador 1");
-            else System.out.println("Gana el jugador 2");
+        if (j1 < 1 || j1 > 3 || j2 < 1 || j2 > 3) {
+            System.out.println("Las jugadas introducidas no son válidas.");
+        } else if (j1 == j2) {
+            System.out.println("Empate.");
+        } else if ((j1 == 1 && j2 == 3)
+                || (j1 == 2 && j2 == 1)
+                || (j1 == 3 && j2 == 2)) {
+            System.out.println("Gana el jugador 1.");
+        } else {
+            System.out.println("Gana el jugador 2.");
         }
-        else System.out.println("Las jugadas introducidas no son válidas.");
     }
 
     //Ordenacion de 3 numeros
     public static void ejercicio8(){
-        System.out.println("Introduzca el primer número entero:");
+        System.out.println("\n--- ORDENACIÓN DE TRES NÚMEROS ---\n");
+
+        System.out.println("Introduzca el primer número:");
         int num1 = sc.nextInt();
-        System.out.println("Introduzca el segundo número entero:");
+
+        System.out.println("Introduzca el segundo número:");
         int num2 = sc.nextInt();
-        System.out.println("Introduzca el tercer número entero:");
+
+        System.out.println("Introduzca el tercer número:");
         int num3 = sc.nextInt();
 
-        int aux1 = 0, aux2 = 0, aux3 = 0;
+        int aux;
 
-        if(num1 > num2 && num1 > num3) {
-            aux1 = num1; 
-            if(num2 > num3) { aux2 = num2; aux3 = num3; }
-            else { aux2 = num3; aux3 = num2; }
-        }
-        else if(num2 > num1 && num2 > num3) {
-            aux1 = num2;
-            if(num1 > num3) { aux2 = num1; aux3 = num3; }
-            else { aux2 = num3; aux3 = num1; }
-        }
-        else if(num3 >num1 && num3 > num2) {
-            aux1 = num3;
-            if(num1 > num2) { aux2 = num1; aux3 = num2; }
-            else { aux2 = num2; aux3 = num1; }
+        if (num1 > num2) {
+            aux = num1;
+            num1 = num2;
+            num2 = aux;
         }
 
-        System.out.println(aux1 + ", " + aux2 + ", " + aux3);
+        if (num1 > num3) {
+            aux = num1;
+            num1 = num3;
+            num3 = aux;
+        }
+
+        if (num2 > num3) {
+            aux = num2;
+            num2 = num3;
+            num3 = aux;
+        }
+
+        System.out.println(num1 + ", " + num2 + ", " + num3);
     }
 
     //Nomina con horas extras nocturnas
     public static void ejercicio9(){
-        System.out.println("Introduzca las horas semanales diurnas: ");
+        System.out.println("\n--- NÓMINA ---\n");
+
+        System.out.println("Introduzca las horas semanales diurnas:");
         int horasDiurnas = sc.nextInt();
-        System.out.println("Introduzca las horas semanales nocturnas: ");
+
+        System.out.println("Introduzca las horas semanales nocturnas:");
         int horasNocturnas = sc.nextInt();
 
-        int salarioBruto = 0;
+        int totalHoras = horasDiurnas + horasNocturnas;
 
-        if(horasDiurnas + horasNocturnas >= 40){
+        double salarioBruto;
 
+        if (totalHoras <= 40) {
+            salarioBruto = (horasDiurnas * 10) + (horasNocturnas * 15);
+        } else {
+            int horasExtra = totalHoras - 40;
+
+            int horasExtraNocturnas = Math.min(horasExtra, horasNocturnas);
+            int horasExtraDiurnas = horasExtra - horasExtraNocturnas;
+
+            int horasNocturnasNormales = horasNocturnas - horasExtraNocturnas;
+            int horasDiurnasNormales = horasDiurnas - horasExtraDiurnas;
+
+            salarioBruto = (horasDiurnasNormales * 10)
+                    + (horasNocturnasNormales * 15)
+                    + (horasExtraDiurnas * 10 * 1.5)
+                    + (horasExtraNocturnas * 15 * 1.5);
         }
-        else salarioBruto = (horasDiurnas * 10) + (horasNocturnas * 15);
 
-        System.out.println("El salario bruto por semana es de " + salarioBruto + " euros.");
+        System.out.println("El salario bruto por semana es de "
+                + salarioBruto + " euros.");
     }
 
     //Calculadora de IMC detallada
     public static void ejercicio10(){
-        System.out.println("Introduzca su peso en kilos: ");
+        System.out.println("\n--- CALCULADORA DE IMC ---\n");
+
+        System.out.println("Introduzca su peso en kilos:");
         double peso = sc.nextDouble();
-        System.out.println("Introduzca su altura en m (1,50): ");
+
+        System.out.println("Introduzca su altura en metros:");
         double altura = sc.nextDouble();
-        System.out.println("Introduzca su edad: ");
+
+        System.out.println("Introduzca su edad:");
         int edad = sc.nextInt();
 
         double imc = peso / (altura * altura);
-        String res = "";
-        if(imc < 18.5) {
-            res = "Bajo peso.";
-            if (edad > 65) System.out.println("Atención: Riesgo elevado para la tercera edad.");
-        }
-        else if (imc >= 18.5 && imc < 24.9) res = "Peso normal.";
-        else if (imc >= 24.9 && imc < 29.9) res = "Sobrepeso.";
-        else if (imc >29.9) res = "Obesidad.";
 
-        System.out.println(res);
+        System.out.println("Su IMC es: " + imc);
+
+        if (imc < 18.5) {
+            System.out.println("Bajo peso.");
+
+            if (edad > 65) {
+                System.out.println(
+                    "Atención: Riesgo elevado para la tercera edad."
+                );
+            }
+
+        } else if (imc < 25) {
+            System.out.println("Peso normal.");
+
+        } else if (imc < 30) {
+            System.out.println("Sobrepeso.");
+
+        } else {
+            System.out.println("Obesidad.");
+        }
     }
 
     //---MÉTODOS AUXILIARES---
-    public static Predicate<Integer> diaValido = dia -> dia >= 1 && dia <= 31;
-    public static Predicate<Integer> mesValido = mes -> mes > 0 && mes <= 12;
-    public static Predicate<Integer> bisiesto = year -> year % 4 == 0 && year % 100 != 0;
-    public static Predicate<Integer> mesDe30 = m -> m == 4 || m == 6 || m == 9 || m == 11;
-    public static Predicate<Integer> febrero = m -> m == 2;
-
     public static boolean esBisiesto(int anyo) {
         return (anyo % 4 == 0 && anyo % 100 != 0)
                 || anyo % 400 == 0;
-    }
-
-    public static void cuantosDiasTiene(int mes, int anyo, int res){
-        if(mes == 2 && bisiesto.test(anyo)) res = 29;
-            else if (febrero.test(mes)) res = 28;
-            else if (mesDe30.test(mes)) res = 30;
-            else res = 31;
     }
 }
