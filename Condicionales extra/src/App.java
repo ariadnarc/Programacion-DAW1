@@ -1,5 +1,7 @@
 import java.util.Scanner;
-import java.util.Predicate;
+import java.util.function.BiPredicate;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class App {
@@ -109,26 +111,45 @@ public class App {
         System.out.println("Introduzca el año:");
         int anyo = sc.nextInt();
 
-        if (isGreater.test(1, mes) || isGreater.test(mes, 12)) {
-            System.out.println("El mes introducido no es válido.");
-        } else {
-            int dias;
+        Map<String, Integer> mapa = new HashMap<>();
+        mapa.put("Enero", 31);
+        mapa.put("Febrero", 28);
+        mapa.put("Marzo", 31);
+        mapa.put("Abril", 31);
+        mapa.put("Mayo", 31);
+        mapa.put("Junio", 31);
+        mapa.put("Julio", 31);
+        mapa.put("Agosto", 31);
+        mapa.put("Septiembre", 31);
+        mapa.put("Octubre", 31);
+        mapa.put("Noviembre", 31);
+        mapa.put("Diciembre", 31);
 
-            if (isEqual.test(mes, 2)) {
-                if (esBisiesto(anyo)) {
-                    dias = 29;
-                } else {
-                    dias = 28;
-                }
-            } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
-                dias = 30;
-            } else {
-                dias = 31;
-            }
 
-            System.out.println("El mes introducido tiene " + dias + " días.");
-        }
     }
+    
+    /*
+    if (isGreater.test(1, mes) || isGreater.test(mes, 12)) {
+        System.out.println("El mes introducido no es válido.");
+    } else {
+        int dias;
+
+        if (isEqual.test(mes, 2)) {
+            if (esBisiesto(anyo)) {
+                dias = 29;
+            } else {
+                dias = 28;
+            }
+        } else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+            dias = 30;
+        } else {
+            dias = 31;
+        }
+
+        System.out.println("El mes introducido tiene " + dias + " días.");
+    }
+    
+    */
 
     //Validador de fecha completa
     public static void ejercicio3(){
@@ -397,8 +418,8 @@ public class App {
 
     //---MÉTODOS AUXILIARES---
 
-    public static Predicate<Int, Int> isEqual = (a, b) -> a == b;
-    public static Predicate<Int, Int> isGreater = (a, b) -> a > b;
+    public static BiPredicate<Integer, Integer> isEqual = (a, b) -> a == b;
+    public static BiPredicate<Integer, Integer> isGreater = (a, b) -> a > b;
 
     public static boolean esBisiesto(int anyo) {
         return (anyo % 4 == 0 && anyo % 100 != 0)
