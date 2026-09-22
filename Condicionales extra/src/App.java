@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Predicate;
 
 
 public class App {
@@ -85,9 +86,9 @@ public class App {
                 && lado2 + lado3 > lado1;
 
         if (valido) {
-            if (lado1 == lado2 && lado2 == lado3) {
+            if (isEqual.test(lado1, lado2) && isEqual.test(lado2, lado3)) {
                 System.out.println("El triángulo es equilátero.");
-            } else if (lado1 == lado2 || lado1 == lado3 || lado2 == lado3) {
+            } else if (isEqual.test(lado1, lado2) || isEqual.test(lado1, lado3) || isEqual.test(lado2, lado3)) {
                 System.out.println("El triángulo es isósceles.");
             } else {
                 System.out.println("El triángulo es escaleno.");
@@ -108,12 +109,12 @@ public class App {
         System.out.println("Introduzca el año:");
         int anyo = sc.nextInt();
 
-        if (mes < 1 || mes > 12) {
+        if (isGreater.test(1, mes) || isGreater.test(mes, 12)) {
             System.out.println("El mes introducido no es válido.");
         } else {
             int dias;
 
-            if (mes == 2) {
+            if (isEqual.test(mes, 2)) {
                 if (esBisiesto(anyo)) {
                     dias = 29;
                 } else {
@@ -148,7 +149,7 @@ public class App {
 
             int diasDelMes;
 
-            if (mes == 2) {
+            if (isEqual.test(mes, 2)) {
                 if (esBisiesto(anyo)) {
                     diasDelMes = 29;
                 } else {
@@ -395,6 +396,10 @@ public class App {
     }
 
     //---MÉTODOS AUXILIARES---
+
+    public static Predicate<Int, Int> isEqual = (a, b) -> a == b;
+    public static Predicate<Int, Int> isGreater = (a, b) -> a > b;
+
     public static boolean esBisiesto(int anyo) {
         return (anyo % 4 == 0 && anyo % 100 != 0)
                 || anyo % 400 == 0;
