@@ -73,7 +73,7 @@ public class App {
         && mayorQue.apply(lado1 + lado3, lado2)
         && mayorQue.apply(lado2 + lado3, lado1);
 
-        //clasifica el triangulo.
+        //clasifica el triangulo
         Function<int[], String> clasificarTriangulo = lados -> {
             int a = lados[0];
             int b = lados[1];
