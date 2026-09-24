@@ -25,14 +25,14 @@ public class App {
         ejercicios.put(10, App::ejercicio10);
 
         System.out.println("Bienvenido, pulse cualquier número + ENTER para comenzar.");
-        sc.nextInt();
+        sc.nextInt(); sc.nextLine();
 
         boolean running = true;
 
         do {
             System.out.println("\nIntroduzca un número del 1 al 10 para ejecutar un ejercicio.");
             if (sc.hasNextInt()) {
-                int ej = sc.nextInt();
+                int ej = sc.nextInt(); sc.nextLine();
 
                 Runnable ejercicio = ejercicios.get(ej);
                 
@@ -55,13 +55,13 @@ public class App {
         System.out.println("\n--- VALIDADOR DE TRIÁNGULOS ---\n");
 
         System.out.println("Introduzca la longitud en cm del primer lado:");
-        int lado1 = sc.nextInt();
+        int lado1 = sc.nextInt(); sc.nextLine();
 
         System.out.println("Introduzca la longitud en cm del segundo lado:");
-        int lado2 = sc.nextInt();
+        int lado2 = sc.nextInt(); sc.nextLine();
 
         System.out.println("Introduzca la longitud en cm del tercer lado:");
-        int lado3 = sc.nextInt();
+        int lado3 = sc.nextInt(); sc.nextLine();
 
         BiFunction<Integer, Integer, Boolean> mayorQue = (a, b) -> a > b;
         
@@ -101,10 +101,10 @@ public class App {
         System.out.println("\n--- CALCULADOR DE DÍAS DEL MES ---\n");
         
         System.out.println("Introduzca el número del mes:");
-        int mes = sc.nextInt();
+        int mes = sc.nextInt(); sc.nextLine();
         
         System.out.println("Introduzca el año:");
-        int anyo = sc.nextInt();
+        int anyo = sc.nextInt(); sc.nextLine();
         
         Map<Integer, Integer> diasPorMes = Map.ofEntries(
             Map.entry(1, 31),
@@ -142,13 +142,13 @@ public class App {
         System.out.println("\n--- VALIDADOR DE FECHA ---\n");
 
         System.out.println("Introduzca un día:");
-        int dia = sc.nextInt();
+        int dia = sc.nextInt(); sc.nextLine();
         
         System.out.println("Introduzca un mes:");
-        int mes = sc.nextInt();
+        int mes = sc.nextInt(); sc.nextLine();
         
         System.out.println("Introduzca un año:");
-        int anyo = sc.nextInt();
+        int anyo = sc.nextInt(); sc.nextLine();
         
         Map<Integer, Integer> diasPorMes = Map.ofEntries(
             Map.entry(1, 31),
@@ -186,7 +186,7 @@ public class App {
         System.out.println("\n--- TARIFA DE APARCAMIENTO ---\n");
 
         System.out.println("Introduzca los minutos estacionados:");
-        int minutos = sc.nextInt();
+        int minutos = sc.nextInt(); sc.nextLine();
         
         Function<Integer, Double> calcularPrecio = m -> {
             if (m <= 0) { return 0.0; }
@@ -209,10 +209,10 @@ public class App {
         System.out.println("\n--- CLASIFICACIÓN DE UN PUNTO ---\n");
 
         System.out.println("Introduzca la coordenada X:");
-        int x = sc.nextInt();
+        int x = sc.nextInt(); sc.nextLine();
         
         System.out.println("Introduzca la coordenada Y:");
-        int y = sc.nextInt();
+        int y = sc.nextInt(); sc.nextLine();
         
         BiFunction<Integer, Integer, String> clasificarPunto = (x1, y1) -> {
             if (x1 == 0 && y1 == 0) { return "el origen"; }
@@ -232,10 +232,10 @@ public class App {
         System.out.println("\n--- DESCUENTO DE TIENDA ---\n");
         
         System.out.println( "Introduzca su categoría de cliente (VIP / ESTANDAR):" );
-        String categoria = sc.next();
+        String categoria = sc.next(); sc.nextLine();
         
         System.out.println("Introduzca el importe bruto:");
-        double precio = sc.nextDouble();
+        double precio = sc.nextDouble(); sc.nextLine();
         
         Function<String, Double> descuentoBase = categoriaCliente -> {
             if (categoriaCliente.equalsIgnoreCase("VIP")) { return 15.0; }
@@ -266,10 +266,10 @@ public class App {
         System.out.println("3 = Tijera");
         
         System.out.println("Jugador 1:");
-        int j1 = sc.nextInt();
+        int j1 = sc.nextInt(); sc.nextLine();
         
         System.out.println("Jugador 2:");
-        int j2 = sc.nextInt();
+        int j2 = sc.nextInt(); sc.nextLine();
         
         BiFunction<Integer, Integer, String> resultado = (a, b) -> {
             if (a < 1 || a > 3 || b < 1 || b > 3) {
@@ -290,13 +290,13 @@ public class App {
         System.out.println("\n--- ORDENACIÓN DE TRES NÚMEROS ---\n");
         
         System.out.println("Introduzca el primer número:");
-        int num1 = sc.nextInt();
+        int num1 = sc.nextInt(); sc.nextLine();
         
         System.out.println("Introduzca el segundo número:");
-        int num2 = sc.nextInt();
+        int num2 = sc.nextInt(); sc.nextLine();
         
         System.out.println("Introduzca el tercer número:");
-        int num3 = sc.nextInt();
+        int num3 = sc.nextInt(); sc.nextLine();
     
         Function<int[], int[]> ordenar = numeros -> {
             int[] resultado = numeros.clone();
@@ -325,10 +325,10 @@ public class App {
         System.out.println("\n--- NÓMINA ---\n");
 
         System.out.println("Introduzca las horas semanales diurnas:");
-        int horasDiurnas = sc.nextInt();
+        int horasDiurnas = sc.nextInt(); sc.nextLine();
 
         System.out.println("Introduzca las horas semanales nocturnas:");
-        int horasNocturnas = sc.nextInt();
+        int horasNocturnas = sc.nextInt(); sc.nextLine();
         
         BiFunction<Integer, Integer, Double> calcularSalario = (diurnas, nocturnas) -> {
             int total = diurnas + nocturnas;
@@ -354,13 +354,13 @@ public class App {
         System.out.println("\n--- CALCULADORA DE IMC ---\n");
         
         System.out.println("Introduzca su peso en kilos:");
-        double peso = sc.nextDouble();
+        double peso = sc.nextDouble(); sc.nextLine();
         
         System.out.println("Introduzca su altura en metros:");
-        double altura = sc.nextDouble();
+        double altura = sc.nextDouble(); sc.nextLine();
         
         System.out.println("Introduzca su edad:");
-        int edad = sc.nextInt();
+        int edad = sc.nextInt(); sc.nextLine();
         
         Function<Double, Double> calcularIMC = p -> p / (altura * altura);
         Function<Double, String> clasificarIMC = imc -> {
