@@ -24,6 +24,7 @@ public class App {
         ejercicios.put(9, App::ejercicio9);
         ejercicios.put(10, App::ejercicio10);
 
+
         System.out.println("Bienvenido, pulse cualquier número + ENTER para comenzar.");
         sc.nextInt(); sc.nextLine();
 
@@ -32,7 +33,7 @@ public class App {
         do {
             System.out.println("\nIntroduzca un número del 1 al 10 para ejecutar un ejercicio.");
             if (sc.hasNextInt()) {
-                int ej = sc.nextInt(); sc.nextLine();
+                int ej = auxLeerInt();
 
                 Runnable ejercicio = ejercicios.get(ej);
                 
@@ -55,13 +56,13 @@ public class App {
         System.out.println("\n--- VALIDADOR DE TRIÁNGULOS ---\n");
 
         System.out.println("Introduzca la longitud en cm del primer lado:");
-        int lado1 = sc.nextInt(); sc.nextLine();
+        int lado1 = auxLeerInt();
 
         System.out.println("Introduzca la longitud en cm del segundo lado:");
-        int lado2 = sc.nextInt(); sc.nextLine();
+        int lado2 = auxLeerInt();
 
         System.out.println("Introduzca la longitud en cm del tercer lado:");
-        int lado3 = sc.nextInt(); sc.nextLine();
+        int lado3 = auxLeerInt();
 
         BiFunction<Integer, Integer, Boolean> mayorQue = (a, b) -> a > b;
         
@@ -101,25 +102,24 @@ public class App {
         System.out.println("\n--- CALCULADOR DE DÍAS DEL MES ---\n");
         
         System.out.println("Introduzca el número del mes:");
-        int mes = sc.nextInt(); sc.nextLine();
+        int mes = auxLeerInt();
         
         System.out.println("Introduzca el año:");
-        int anyo = sc.nextInt(); sc.nextLine();
+        int anyo = auxLeerInt();
         
-        Map<Integer, Integer> diasPorMes = Map.ofEntries(
-            Map.entry(1, 31),
-            Map.entry(2, 28),
-            Map.entry(3, 31),
-            Map.entry(4, 30),
-            Map.entry(5, 31),
-            Map.entry(6, 30),
-            Map.entry(7, 31),
-            Map.entry(8, 31),
-            Map.entry(9, 30),
-            Map.entry(10, 31),
-            Map.entry(11, 30),
-            Map.entry(12, 31)
-        );
+        Map<Integer, Integer> diasPorMes = new HashMap<>();
+            diasPorMes.put(1, 31);
+            diasPorMes.put(2, 28);
+            diasPorMes.put(3, 31);
+            diasPorMes.put(4, 30);
+            diasPorMes.put(5, 31);
+            diasPorMes.put(6, 30);
+            diasPorMes.put(7, 31);
+            diasPorMes.put(8, 31);
+            diasPorMes.put(9, 30);
+            diasPorMes.put(10, 31);
+            diasPorMes.put(11, 30);
+            diasPorMes.put(12, 31);
             
         Predicate<Integer> mesValido = m -> m >= 1 && m <= 12;
         Function<Integer, Integer> obtenerDias = m -> diasPorMes.get(m);
@@ -142,28 +142,29 @@ public class App {
         System.out.println("\n--- VALIDADOR DE FECHA ---\n");
 
         System.out.println("Introduzca un día:");
-        int dia = sc.nextInt(); sc.nextLine();
+        int dia = auxLeerInt();
         
         System.out.println("Introduzca un mes:");
-        int mes = sc.nextInt(); sc.nextLine();
+        int mes = auxLeerInt();
         
         System.out.println("Introduzca un año:");
-        int anyo = sc.nextInt(); sc.nextLine();
+        int anyo = auxLeerInt();
         
-        Map<Integer, Integer> diasPorMes = Map.ofEntries(
-            Map.entry(1, 31),
-            Map.entry(2, 28),
-            Map.entry(3, 31),
-            Map.entry(4, 30),
-            Map.entry(5, 31),
-            Map.entry(6, 30),
-            Map.entry(7, 31),
-            Map.entry(8, 31),
-            Map.entry(9, 30),
-            Map.entry(10, 31),
-            Map.entry(11, 30),
-            Map.entry(12, 31)
-        );
+        
+        Map<Integer, Integer> diasPorMes = new HashMap<>();
+            diasPorMes.put(1, 31);
+            diasPorMes.put(2, 28);
+            diasPorMes.put(3, 31);
+            diasPorMes.put(4, 30);
+            diasPorMes.put(5, 31);
+            diasPorMes.put(6, 30);
+            diasPorMes.put(7, 31);
+            diasPorMes.put(8, 31);
+            diasPorMes.put(9, 30);
+            diasPorMes.put(10, 31);
+            diasPorMes.put(11, 30);
+            diasPorMes.put(12, 31);
+        
             
         BiPredicate<Integer, Integer> diaDentroDelMes = (d, m) -> {
             if (m == 2 && esBisiesto.test(anyo)) {
@@ -186,7 +187,7 @@ public class App {
         System.out.println("\n--- TARIFA DE APARCAMIENTO ---\n");
 
         System.out.println("Introduzca los minutos estacionados:");
-        int minutos = sc.nextInt(); sc.nextLine();
+        int minutos = auxLeerInt();
         
         Function<Integer, Double> calcularPrecio = m -> {
             if (m <= 0) { return 0.0; }
@@ -209,10 +210,10 @@ public class App {
         System.out.println("\n--- CLASIFICACIÓN DE UN PUNTO ---\n");
 
         System.out.println("Introduzca la coordenada X:");
-        int x = sc.nextInt(); sc.nextLine();
+        int x = auxLeerInt();
         
         System.out.println("Introduzca la coordenada Y:");
-        int y = sc.nextInt(); sc.nextLine();
+        int y = auxLeerInt();
         
         BiFunction<Integer, Integer, String> clasificarPunto = (x1, y1) -> {
             if (x1 == 0 && y1 == 0) { return "el origen"; }
@@ -235,7 +236,7 @@ public class App {
         String categoria = sc.next(); sc.nextLine();
         
         System.out.println("Introduzca el importe bruto:");
-        double precio = sc.nextDouble(); sc.nextLine();
+        double precio = auxLeerDouble();
         
         Function<String, Double> descuentoBase = categoriaCliente -> {
             if (categoriaCliente.equalsIgnoreCase("VIP")) { return 15.0; }
@@ -266,10 +267,10 @@ public class App {
         System.out.println("3 = Tijera");
         
         System.out.println("Jugador 1:");
-        int j1 = sc.nextInt(); sc.nextLine();
+        int j1 = auxLeerInt();
         
         System.out.println("Jugador 2:");
-        int j2 = sc.nextInt(); sc.nextLine();
+        int j2 = auxLeerInt();
         
         BiFunction<Integer, Integer, String> resultado = (a, b) -> {
             if (a < 1 || a > 3 || b < 1 || b > 3) {
@@ -290,13 +291,13 @@ public class App {
         System.out.println("\n--- ORDENACIÓN DE TRES NÚMEROS ---\n");
         
         System.out.println("Introduzca el primer número:");
-        int num1 = sc.nextInt(); sc.nextLine();
+        int num1 = auxLeerInt();
         
         System.out.println("Introduzca el segundo número:");
-        int num2 = sc.nextInt(); sc.nextLine();
+        int num2 = auxLeerInt();
         
         System.out.println("Introduzca el tercer número:");
-        int num3 = sc.nextInt(); sc.nextLine();
+        int num3 = auxLeerInt();
     
         Function<int[], int[]> ordenar = numeros -> {
             int[] resultado = numeros.clone();
@@ -325,10 +326,10 @@ public class App {
         System.out.println("\n--- NÓMINA ---\n");
 
         System.out.println("Introduzca las horas semanales diurnas:");
-        int horasDiurnas = sc.nextInt(); sc.nextLine();
+        int horasDiurnas = auxLeerInt();
 
         System.out.println("Introduzca las horas semanales nocturnas:");
-        int horasNocturnas = sc.nextInt(); sc.nextLine();
+        int horasNocturnas = auxLeerInt();
         
         BiFunction<Integer, Integer, Double> calcularSalario = (diurnas, nocturnas) -> {
             int total = diurnas + nocturnas;
@@ -354,13 +355,13 @@ public class App {
         System.out.println("\n--- CALCULADORA DE IMC ---\n");
         
         System.out.println("Introduzca su peso en kilos:");
-        double peso = sc.nextDouble(); sc.nextLine();
+        double peso = auxLeerDouble();
         
         System.out.println("Introduzca su altura en metros:");
-        double altura = sc.nextDouble(); sc.nextLine();
+        double altura = auxLeerDouble();
         
         System.out.println("Introduzca su edad:");
-        int edad = sc.nextInt(); sc.nextLine();
+        int edad = auxLeerInt();
         
         Function<Double, Double> calcularIMC = p -> p / (altura * altura);
         Function<Double, String> clasificarIMC = imc -> {
@@ -388,5 +389,25 @@ public class App {
     public static BiPredicate<Integer, Integer> isGreater = (a, b) -> a > b;
     
     public static Predicate<Integer> esBisiesto = anyo -> (anyo % 4 == 0 && anyo % 100 != 0) || anyo % 400 == 0;
-}
 
+    public static int auxLeerInt(){
+        int aux = sc.nextInt();
+        sc.nextLine();
+        return aux;
+    }
+
+    public static double auxLeerDouble(){
+        double aux = sc.nextDouble();
+        sc.nextLine();
+        return aux;
+    }
+
+    public static int auxLeerEnteroFraseRango(String fraseMostrada, int minimo, int maximo){
+        System.out.println(fraseMostrada);
+        System.out.println();
+        int aux = sc.nextInt();
+        sc.nextLine();
+        if(aux < minimo || aux > maximo) System.out.println("El numero introducido no es valido");
+        return aux;
+    }
+}
