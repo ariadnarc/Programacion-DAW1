@@ -25,11 +25,10 @@ public class App {
 
     // Mostrar numeros pares entre el 1 y el 200 (sumando 1)
     public static void ejercicio3(){
-        for(int i = 2; i <= 200; i++){
-            if(i == 200) System.out.print(i + ".");
-            else {
-                System.out.print(i + ", ");
-                i++;
+        for(int i = 1; i <= 200; i++){
+            if(i % 2 == 0){
+                if(i == 200) System.out.print(i + ".");
+                else System.out.print(i + ", ");
             }
         }
     }
@@ -48,7 +47,7 @@ public class App {
     // Calcular y mostrar factorial
     public static void ejercicio5(){
         
-        int n = auxLeerEnteroFraseRango("Introduzca un numero: ", 0, 100000);
+        int n = auxLeerEnteroFraseRango("Introduzca un numero: ", 0, 12);
 
         System.out.print(n + "! = ");
 
@@ -56,65 +55,93 @@ public class App {
             if(i == 1) System.out.print(i + ".\n");
             else System.out.print(i + " * ");
         }
-        System.out.println("El factorial de " + n + " es " + factorial(n) + ".");
+
+        System.out.println("El factorial de " + n + " es " + factorialBucle(n) + ".");
     }
 
     //Detectar negativos
     public static void ejercicio6(){
 
-        System.out.println("Se le pediran 10 numeros mayores que 0: ");
-        int[] listaNums = {0,0,0,0,0,0,0,0,0,0,};
+        System.out.println("Se le pediran 10 numeros no nulos:");
+
+        int[] listaNums = new int[10];
         boolean negativo = false;
 
-        for(int i = 0; i < 10; i++){
-            System.out.print("Número " + i + ": ");
+        for(int i = 0; i < listaNums.length; i++){
+            System.out.print("Número " + (i + 1) + ": ");
             listaNums[i] = sc.nextInt();
         }
 
         for(int i = 0; i < listaNums.length; i++){
-            if(i < 0) negativo = true;
-            else negativo = false;
+            if(listaNums[i] < 0){
+                negativo = true;
+            }
         }
 
-        System.out.println(negativo ? "Se ha detectado al menos un numero negativo" : "Todos los números son positivos.");
+        System.out.println(
+            negativo
+            ? "Se ha detectado al menos un numero negativo."
+            : "No se ha detectado ningun numero negativo."
+        );
     }
 
     //Detectar cuantos negativos
     public static void ejercicio7(){
-        System.out.println("Se le pediran 10 numeros mayores que 0: ");
-        int[] listaNums = {0,0,0,0,0,0,0,0,0,0,};
-        boolean negativo = false;
-        int aux = 0;
+        System.out.println("Se le pediran 10 numeros no nulos:");
 
-        for(int i = 0; i < 10; i++){
-            System.out.print("Número " + i + ": ");
+        int[] listaNums = new int[10];
+
+        int positivos = 0;
+        int negativos = 0;
+
+        for(int i = 0; i < listaNums.length; i++){
+            System.out.print("Número " + (i + 1) + ": ");
             listaNums[i] = sc.nextInt();
         }
 
         for(int i = 0; i < listaNums.length; i++){
-            if(i < 0) {
-                negativo = true;
-                aux++;
+
+            if(listaNums[i] > 0){
+                positivos++;
             }
-            else negativo = false;
+            else if(listaNums[i] < 0){
+                negativos++;
+            }
         }
 
-        if(negativo){
-            System.out.println("Hay " + aux + " numeros negativos.");
-        }
-        else{
-            System.out.println("Todos los números son positivos.");
-        }
+        System.out.println("Hay " + positivos + " números positivos.");
+        System.out.println("Hay " + negativos + " números negativos.");
         
     }
 
     //Detectar negativos y positivos hasta que se escriba un 0
     public static void ejercicio8(){
-        int num = 0;
+        int num;
+        int positivos = 0;
+        int negativos = 0;
 
         do {
-            num = auxLeerEnteroFraseRango("Introduzca un numero o 0 para parar: ", 0, 10000);
-        }while (num != 0);
+            System.out.print("Introduzca un numero (0 para terminar): ");
+            num = sc.nextInt();
+
+            if(num > 0){
+                positivos++;
+            }
+            else if(num < 0){
+                negativos++;
+            }
+
+        } while(num != 0);
+
+        System.out.println("Se han introducido " + positivos + " números positivos.");
+        System.out.println("Se han introducido " + negativos + " números negativos.");
+
+        if(negativos > 0){
+            System.out.println("Se ha detectado al menos un número negativo.");
+        }
+        else{
+            System.out.println("No se ha detectado ningún número negativo.");
+        }
 
     }
 
@@ -129,7 +156,17 @@ public class App {
     }
     
     public static int factorial(int n){
-            if(n <= 1) return 1;
-            return n * factorial(n-1);
+        if(n <= 1) return 1;
+        return n * factorial(n-1);
+    }
+
+    public static int factorialBucle(int n){
+        int resultado = 1;
+
+        for(int i = 1; i <= n; i++){
+            resultado *= i;
         }
+
+        return resultado;
+    }
 }
