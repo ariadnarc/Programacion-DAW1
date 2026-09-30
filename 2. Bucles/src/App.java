@@ -4,11 +4,12 @@ public class App {
 
     public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        ejercicio6();
+        ejercicio12();
     }
 
     // Mostrar por pantalla numeros del 1 al 20
     public static void ejercicio1(){
+
         for(int i = 1; i <= 20; i++){
             if(i == 20) System.out.print(i + ".");
             else System.out.print(i + ", ");
@@ -17,6 +18,7 @@ public class App {
 
     // Mostrar por pantalla pares del 1 al 200 (sumando 2)
     public static void ejercicio2(){
+
         for(int i = 2; i <= 200; i+= 2){
             if(i == 200) System.out.print(i + ".");
             else System.out.print(i + ", ");
@@ -25,6 +27,7 @@ public class App {
 
     // Mostrar numeros pares entre el 1 y el 200 (sumando 1)
     public static void ejercicio3(){
+
         for(int i = 1; i <= 200; i++){
             if(i % 2 == 0){
                 if(i == 200) System.out.print(i + ".");
@@ -33,7 +36,7 @@ public class App {
         }
     }
 
-    //Mostrar numeros del 1 al N
+    // Mostrar numeros del 1 al N
     public static void ejercicio4(){
         System.out.println("Introduzca un numero: ");
         int n = sc.nextInt();
@@ -59,7 +62,7 @@ public class App {
         System.out.println("El factorial de " + n + " es " + factorialBucle(n) + ".");
     }
 
-    //Detectar negativos
+    // Detectar negativos
     public static void ejercicio6(){
 
         System.out.println("Se le pediran 10 numeros no nulos:");
@@ -85,7 +88,7 @@ public class App {
         );
     }
 
-    //Detectar cuantos negativos
+    // Detectar cuantos negativos
     public static void ejercicio7(){
         System.out.println("Se le pediran 10 numeros no nulos:");
 
@@ -114,21 +117,23 @@ public class App {
         
     }
 
-    //Detectar negativos y positivos hasta que se escriba un 0
+    // Detectar negativos y positivos hasta que se escriba un 0
     public static void ejercicio8(){
-        int num;
+
+        int num; //variable que va almacenando el numero que se escriba
         int positivos = 0;
         int negativos = 0;
 
+        //do-while: primero pido el numero y luego miro si es 0 para salir
         do {
             System.out.print("Introduzca un numero (0 para terminar): ");
             num = sc.nextInt();
 
             if(num > 0){
-                positivos++;
+                positivos++; //incremento cuenta de positivos
             }
             else if(num < 0){
-                negativos++;
+                negativos++; //incremento cuenta de negativos
             }
 
         } while(num != 0);
@@ -136,13 +141,96 @@ public class App {
         System.out.println("Se han introducido " + positivos + " números positivos.");
         System.out.println("Se han introducido " + negativos + " números negativos.");
 
+        //compruebo si ha habido numeros negativos
         if(negativos > 0){
             System.out.println("Se ha detectado al menos un número negativo.");
         }
         else{
             System.out.println("No se ha detectado ningún número negativo.");
         }
+    }
 
+    // Suma de 10 primeros numeros naturales
+    public static void ejercicio9(){
+
+        int[] listaNums = new int[10]; //array con los numeros del 1 al 10
+        int auxSuma = 0; //auxiliar para almacenar la suma
+        long auxMult = 1; //auxiliar para almacenar la multiplicacion
+
+        // relleno el array con el indice + 1 para que empiece en 1 y no en 0
+        for(int i = 0; i < listaNums.length; i++){
+            listaNums[i] = i+1;
+            System.out.println(listaNums[i]);
+        }
+
+        //relleno las variables auxiliares
+        for(int i = 0; i< listaNums.length; i++){
+            auxSuma += listaNums[i];
+            auxMult *= listaNums[i];
+        }
+
+        System.out.println("La suma de los numeros es igual a " + auxSuma);
+        System.out.println("El producto de los numeros es igual a " + auxMult);
+    }
+
+    // Leer secuencia de notas
+    public static void ejercicio10(){
+        int nota; //variable que va almacenando la nota que se escriba
+        boolean diez = false; //booleano que se activa solo si recibe un 10
+
+        //do-while: primero pido la nota y luego miro si es -1 para salir
+        do {
+            System.out.print("Introduzca una nota del 1 al 10 (-1 para salir): ");
+            nota = sc.nextInt();
+
+            if(nota == 10){
+                diez = true; //hay un 10
+            }
+
+        } while(nota != -1);
+
+        System.out.println(diez ? "Ha habido al menos un diez." : "No ha habido ningún diez.");
+    }
+
+    // Suma pares e impares
+    public static void ejercicio11(){
+        int sumaImpar = 0; //variable auxiliar para sumar los impares
+        int sumaPar = 0; //variable auxiliar para sumar los pares
+
+        //recorro todos los numeros del 100 al 200
+        for(int i = 100; i <= 200; i++){
+            if(i % 2 == 0) sumaPar += i; // si es par se lo sumo a la variable par
+            else sumaImpar += i; // si es impar se lo sumo a la variable impar
+        }
+
+        System.out.println("La suma de los pares del 100 al 200 es " + sumaPar + " y la suma de los impares del 100 al 200 es " + sumaImpar);
+    }
+
+    // Calcular potencia
+    public static void ejercicio12(){
+        System.out.println("Se le pedirá un numero y a que potencia elevarlo: ");
+        System.out.print("Número: ");
+        int num = sc.nextInt();
+        System.out.print("Elevado a: ");
+        int potencia = sc.nextInt();
+        int res = 1;
+
+        for(int i = 0; i < potencia; i++){
+            res *= num;
+        }
+
+        System.out.println("La potencia de " + num + " elevado a " + potencia + " es igual a " + res);
+
+    }
+
+    // Adivinar numero del 1 al 100
+    public static void ejercicio13(){
+
+    }
+
+    // Billetes necesarios
+    public static void ejercicio14(){
+        
     }
 
     //---METODOS AUXILIARES---
