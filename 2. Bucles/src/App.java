@@ -1,10 +1,55 @@
 import java.util.Scanner;
+import java.util.Map;
+import java.util.HashMap;
+
 
 public class App {
 
     public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        ejercicio12();
+        
+        Map<Integer, Runnable> ejercicios = new HashMap<>();
+        ejercicios.put(1, App::ejercicio1);
+        ejercicios.put(2, App::ejercicio2);
+        ejercicios.put(3, App::ejercicio3);
+        ejercicios.put(4, App::ejercicio4);
+        ejercicios.put(5, App::ejercicio5);
+        ejercicios.put(6, App::ejercicio6);
+        ejercicios.put(7, App::ejercicio7);
+        ejercicios.put(8, App::ejercicio8);
+        ejercicios.put(9, App::ejercicio9);
+        ejercicios.put(10, App::ejercicio10);
+        ejercicios.put(11, App::ejercicio11);
+        ejercicios.put(12, App::ejercicio12);
+        ejercicios.put(13, App::ejercicio13);
+        ejercicios.put(14, App::ejercicio14);
+
+        System.out.println("Bienvenido, pulse cualquier número + ENTER para comenzar.");
+        sc.nextInt(); sc.nextLine();
+
+        boolean running = true;
+
+        do {
+            System.out.println("\nIntroduzca un número del 1 al 13 para ejecutar un ejercicio:");
+            if(sc.hasNextInt()){
+                int ej = auxLeerInt();
+
+                Runnable ejercicio = ejercicios.get(ej);
+
+                if(ejercicio != null){
+                    ejercicio.run();
+                } else {
+                    System.out.println("El valor introducido no coincide con ningún ejercicio.");
+                }
+            } else {
+                System.out.println("Por favor, introduzca un número válido.");
+                sc.next();
+            }
+
+        } while (running);
+
+        sc.close();
+
     }
 
     // Mostrar por pantalla numeros del 1 al 20
@@ -225,7 +270,26 @@ public class App {
 
     // Adivinar numero del 1 al 100
     public static void ejercicio13(){
+        System.out.println("Piense en un número del 1 al 100.");
 
+        boolean acertado = false;
+        int min = 1;
+        int max = 100;
+
+        do{
+            System.out.println("¿Es mayor que " + ((min + max) / 2) + "?  (0: No / 1: SÍ / 2: ¡ES MI NÚMERO! ) ");
+            int res = auxLeerInt();
+            if(res == 0){
+                max /= 2;
+            } else if (res == 1) {
+                min = ((min + max) / 2);
+            } else {
+                acertado = true;
+            }
+
+        } while(!acertado);
+
+        System.out.println("Su número es " + ((min + max) / 2));
     }
 
     // Billetes necesarios
@@ -256,5 +320,11 @@ public class App {
         }
 
         return resultado;
+    }
+
+    public static int auxLeerInt(){
+        int aux = sc.nextInt();
+        sc.nextLine();
+        return aux;
     }
 }
