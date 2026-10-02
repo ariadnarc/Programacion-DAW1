@@ -9,6 +9,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         Map<Integer, Runnable> ejercicios = new HashMap<>();
+
         ejercicios.put(1, App::ejercicio1);
         ejercicios.put(2, App::ejercicio2);
         ejercicios.put(3, App::ejercicio3);
@@ -24,29 +25,52 @@ public class App {
         ejercicios.put(13, App::ejercicio13);
         ejercicios.put(14, App::ejercicio14);
 
-        System.out.println("Bienvenido, pulse cualquier número + ENTER para comenzar.");
-        sc.nextInt(); sc.nextLine();
-
         boolean running = true;
 
         do {
-            System.out.println("\nIntroduzca un número del 1 al 13 para ejecutar un ejercicio:");
-            if(sc.hasNextInt()){
-                int ej = auxLeerInt();
+
+            System.out.println();
+            System.out.println("========== MENÚ ==========");
+            System.out.println("1. Ejercicio 1");
+            System.out.println("2. Ejercicio 2");
+            System.out.println("3. Ejercicio 3");
+            System.out.println("4. Ejercicio 4");
+            System.out.println("5. Ejercicio 5");
+            System.out.println("6. Ejercicio 6");
+            System.out.println("7. Ejercicio 7");
+            System.out.println("8. Ejercicio 8");
+            System.out.println("9. Ejercicio 9");
+            System.out.println("10. Ejercicio 10");
+            System.out.println("11. Ejercicio 11");
+            System.out.println("12. Ejercicio 12");
+            System.out.println("13. Ejercicio 13");
+            System.out.println("14. Ejercicio 14");
+            System.out.println("0. Salir");
+            System.out.println("===========================");
+            System.out.print("Seleccione un ejercicio: ");
+
+            int ej = auxLeerInt();
+
+            if(ej == 0){
+
+                running = false;
+                System.out.println("Programa finalizado.");
+
+            } else {
 
                 Runnable ejercicio = ejercicios.get(ej);
 
                 if(ejercicio != null){
+
                     ejercicio.run();
+
                 } else {
-                    System.out.println("El valor introducido no coincide con ningún ejercicio.");
+
+                    System.out.println("El número introducido no corresponde a ningún ejercicio.");
                 }
-            } else {
-                System.out.println("Por favor, introduzca un número válido.");
-                sc.next();
             }
 
-        } while (running);
+        } while(running);
 
         sc.close();
 
@@ -198,24 +222,16 @@ public class App {
     // Suma de 10 primeros numeros naturales
     public static void ejercicio9(){
 
-        int[] listaNums = new int[10]; //array con los numeros del 1 al 10
-        int auxSuma = 0; //auxiliar para almacenar la suma
-        long auxMult = 1; //auxiliar para almacenar la multiplicacion
+        int suma = 0;
+        long producto = 1;
 
-        // relleno el array con el indice + 1 para que empiece en 1 y no en 0
-        for(int i = 0; i < listaNums.length; i++){
-            listaNums[i] = i+1;
-            System.out.println(listaNums[i]);
+        for(int i = 1; i <= 10; i++){
+            suma += i;
+            producto *= i;
         }
 
-        //relleno las variables auxiliares
-        for(int i = 0; i< listaNums.length; i++){
-            auxSuma += listaNums[i];
-            auxMult *= listaNums[i];
-        }
-
-        System.out.println("La suma de los numeros es igual a " + auxSuma);
-        System.out.println("El producto de los numeros es igual a " + auxMult);
+        System.out.println("La suma de los 10 primeros números naturales es " + suma + ".");
+        System.out.println("El producto de los 10 primeros números naturales es " + producto + ".");
     }
 
     // Leer secuencia de notas
@@ -225,7 +241,7 @@ public class App {
 
         //do-while: primero pido la nota y luego miro si es -1 para salir
         do {
-            System.out.print("Introduzca una nota del 1 al 10 (-1 para salir): ");
+            System.out.print("Introduzca una nota del 0 al 10 (-1 para salir): ");
             nota = sc.nextInt();
 
             if(nota == 10){
@@ -248,7 +264,8 @@ public class App {
             else sumaImpar += i; // si es impar se lo sumo a la variable impar
         }
 
-        System.out.println("La suma de los pares del 100 al 200 es " + sumaPar + " y la suma de los impares del 100 al 200 es " + sumaImpar);
+        System.out.println("La suma de los pares del 100 al 200 es " + sumaPar + ".");
+        System.out.println("La suma de los impares del 100 al 200 es " + sumaImpar + ".");
     }
 
     // Calcular potencia
@@ -276,25 +293,67 @@ public class App {
         int min = 1;
         int max = 100;
 
-        do{
-            System.out.println("¿Es mayor que " + ((min + max) / 2) + "?  (0: No / 1: SÍ / 2: ¡ES MI NÚMERO! ) ");
-            int res = auxLeerInt();
-            if(res == 0){
-                max /= 2;
-            } else if (res == 1) {
-                min = ((min + max) / 2);
-            } else {
+        do {
+
+            int intento = (min + max) / 2;
+
+            System.out.println();
+            System.out.println("¿Es " + intento + " su número?");
+            System.out.println("0 - Mi número es menor");
+            System.out.println("1 - Mi número es mayor");
+            System.out.println("2 - ¡Has acertado!");
+
+            int respuesta = auxLeerInt();
+
+            if(respuesta == 0){
+
+                max = intento - 1;
+
+            } else if(respuesta == 1){
+
+                min = intento + 1;
+
+            } else if(respuesta == 2){
+
                 acertado = true;
+
+            } else {
+
+                System.out.println("Respuesta no válida.");
+
             }
 
         } while(!acertado);
 
-        System.out.println("Su número es " + ((min + max) / 2));
+        System.out.println("¡He acertado! Tu número es " + ((min + max) / 2) + ".");
     }
 
     // Billetes necesarios
     public static void ejercicio14(){
-        
+        System.out.print("Introduzca una cantidad de euros (múltiplo de 5): ");
+        int cantidad = sc.nextInt();
+
+        if(cantidad <= 0 || cantidad % 5 != 0){
+
+            System.out.println("La cantidad debe ser positiva y múltiplo de 5.");
+            return;
+        }
+
+        int[] billetes = {500, 200, 100, 50, 20, 10, 5};
+
+        for(int i = 0; i < billetes.length; i++){
+
+            int cantidadBilletes = cantidad / billetes[i];
+
+            if(cantidadBilletes > 0){
+
+                System.out.println(
+                    cantidadBilletes + " billete(s) de " + billetes[i] + " €."
+                );
+
+                cantidad = cantidad % billetes[i];
+            }
+        }
     }
 
     //---METODOS AUXILIARES---
