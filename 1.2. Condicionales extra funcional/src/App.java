@@ -56,6 +56,7 @@ public class App {
         System.out.println("\n--- VALIDADOR DE TRIÁNGULOS ---\n");
 
         System.out.println("Introduzca la longitud en cm del primer lado:");
+
         int lado1 = auxLeerInt();
 
         System.out.println("Introduzca la longitud en cm del segundo lado:");

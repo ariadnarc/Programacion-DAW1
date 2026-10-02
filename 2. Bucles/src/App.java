@@ -163,7 +163,7 @@ public class App {
 
         int[] listaNums = new int[10];
 
-        int positivos = 0;
+        int positivos = 0; // hacer con solo uno de los dos
         int negativos = 0;
 
         for(int i = 0; i < listaNums.length; i++){
