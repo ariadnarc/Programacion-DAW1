@@ -1,11 +1,47 @@
-
 body {
-    background-color: darkorange;
+    background-color: rgb(231, 158, 176);
+    font-family: Arial, sans-serif;
+    text-align: center;
 }
 
-button{
-    background-color: cornflowerblue;
-    
+h1 {
+    color: rgb(91, 65, 54);
 }
 
-h1 { color: blue; }
+.imagen {
+    margin: 20px;
+}
+
+.imagen img {
+    width: 100px;
+    height: 100px;
+}
+
+hr {
+    width: 80%;
+    border: 0;
+    border-top: 3px solid rgb(95, 77, 65);
+    margin: 25px auto;
+}
+
+button {
+    background-color: rgb(168, 164, 159);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(230, 168, 216);
+}
+
+#resultado {
+    margin: 25px auto;
+    max-width: 90%;
+    overflow-wrap: anywhere;
+    font-size: 18px;
+    font-weight: bold;
+}
