@@ -28,4 +28,18 @@ public class HomeController {
 
         return "ejercicio1";
     }
+
+    @GetMapping("/ejercicio2")
+    public String ejercicio2(Model model) {
+        String resultado = ejercicioService.ejercicio2();
+        model.addAttribute("resultado", resultado);
+        return "ejercicio2";
+    }
+
+    @GetMapping("/ejercicio3")
+    public String ejercicio3(Model model) {
+        String resultado = ejercicioService.ejercicio3();
+        model.addAttribute("resultado", resultado);
+        return "ejercicio3";
+    }
 }
