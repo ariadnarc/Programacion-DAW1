@@ -55,6 +55,7 @@ public class App {
 
     }
 
+    // Dias de la semana
     public static void ejercicio1(){
         int num = 0;
 
@@ -76,6 +77,7 @@ public class App {
         
     }
 
+    // Validador de triangulos
     public static void ejercicio2(){
         System.out.println("Introduzca la longitud en cm del primer lado:");
         int lado1 = sc.nextInt();
@@ -104,6 +106,7 @@ public class App {
         }
     }
 
+    // Tabla de multiplicar
     public static void ejercicio3(){
         int num = 0;
         int res = 0;
@@ -121,8 +124,56 @@ public class App {
 
     }
 
+    // Intervalo y limites
     public static void ejercicio4(){
         
+        int inferior, superior, numero;
+        int suma = 0;
+        int fuera = 0;
+        boolean limite = false;
+
+        System.out.println("Introduce el límite inferior:");
+        inferior = sc.nextInt();
+
+        System.out.println("Introduce el límite superior:");
+        superior = sc.nextInt();
+
+        while (inferior > superior) {
+            System.out.println("Error. El límite inferior debe ser menor o igual que el superior.");
+
+            System.out.println("Introduce el límite inferior:");
+            inferior = sc.nextInt();
+
+            System.out.println("Introduce el límite superior:");
+            superior = sc.nextInt();
+        }
+
+        System.out.println("Introduce un número (0 para terminar):");
+        numero = sc.nextInt();
+
+        while (numero != 0) {
+
+            if (numero > inferior && numero < superior) {
+                suma = suma + numero;
+            } else if (numero < inferior || numero > superior) {
+                fuera++;
+            } else {
+                limite = true;
+            }
+
+            System.out.println("Introduce otro número (0 para terminar):");
+            numero = sc.nextInt();
+        }
+
+        System.out.println("Suma de los números dentro del intervalo: " + suma);
+        System.out.println("Cantidad de números fuera del intervalo: " + fuera);
+
+        if (limite) {
+            System.out.println("Se ha introducido algún número igual a los límites.");
+        } else {
+            System.out.println("No se ha introducido ningún número igual a los límites.");
+        }
+
     }
 
 
