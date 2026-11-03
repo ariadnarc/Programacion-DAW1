@@ -85,11 +85,35 @@ public class App {
     }
 
     public static void ejercicio1(){
+        double[] numeros = new double[10];
 
+        System.out.println("Por favor, introduce 10 números reales:");
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Número " + (i + 1) + ": ");
+            numeros[i] = sc.nextDouble();
+        }
+
+        System.out.println("\\nLos valores guardados en el array son:");
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.println("Posición [" + i + "]: " + numeros[i]);
+        }
     }
 
     public static void ejercicio2(){
-        
+        double[] numeros = new double[10];
+        double suma = 0;
+
+        System.out.println("Por favor, introduce 10 números reales:");
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print("Número " + (i + 1) + ": ");
+            numeros[i] = sc.nextDouble();
+        }
+
+        for (int i = 0; i < numeros.length; i++) {
+            suma += numeros[i];
+        }
+
+        System.out.println("\\nLa suma de todos los valores ingresados es: " + suma);
     }
 
     public static void ejercicio3(){
