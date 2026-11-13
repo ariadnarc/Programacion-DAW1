@@ -360,19 +360,121 @@ public class App {
     }
 
     public static void ejercicio11(){
-        
+
+        int[] array1 = new int[100];
+        int[] array2 = new int[100];
+
+        // Rellenamos el primer array
+        for (int i = 0; i < array1.length; i++) {
+            array1[i] = i + 1;
+        }
+
+        // Copiamos el primer array en orden inverso
+        for (int i = 0; i < array1.length; i++) {
+            array2[i] = array1[99 - i];
+        }
+
+        // Mostramos el primer array
+        System.out.println("Primer array:");
+        for (int i = 0; i < array1.length; i++) {
+            System.out.print(array1[i] + " ");
+        }
+
+        // Mostramos el segundo array
+        System.out.println("\nSegundo array:");
+        for (int i = 0; i < array2.length; i++) {
+            System.out.print(array2[i] + " ");
+        }
     }
 
     public static void ejercicio12(){
-        
+        int[] numeros = new int[10];
+        char opcion;
+
+        do {
+            System.out.println("\n--- MENÚ ---");
+            System.out.println("a. Mostrar valores");
+            System.out.println("b. Introducir valor");
+            System.out.println("c. Salir");
+            System.out.print("Elige una opción: ");
+
+            opcion = sc.next().charAt(0);
+
+            switch (opcion) {
+
+                case 'a':
+                    for (int i = 0; i < numeros.length; i++) {
+                        System.out.println("Posición " + i + ": " + numeros[i]);
+                    }
+                    break;
+
+                case 'b':
+                    System.out.print("Introduce un valor: ");
+                    int valor = sc.nextInt();
+
+                    System.out.print("Introduce una posición (0-9): ");
+                    int posicion = sc.nextInt();
+
+                    if (posicion >= 0 && posicion < numeros.length) {
+                        numeros[posicion] = valor;
+                    } else {
+                        System.out.println("Posición no válida.");
+                    }
+                    break;
+
+                case 'c':
+                    System.out.println("Saliendo del programa...");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida.");
+            }
+
+        } while (opcion != 'c');
     }
 
     public static void ejercicio13(){
-        
+        System.out.print("Introduce el valor inicial: ");
+        int v = sc.nextInt();
+
+        System.out.print("Introduce el incremento: ");
+        int incremento = sc.nextInt();
+
+        System.out.print("Introduce el número de valores: ");
+        int n = sc.nextInt();
+
+        int[] numeros = new int[n];
+
+        // Rellenamos el array
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = v + (i * incremento);
+        }
+
+        // Mostramos la secuencia
+        System.out.println("Secuencia aritmética:");
+
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(numeros[i] + " ");
+        }
     }
 
     public static void ejercicio14(){
-        
+        int[] numeros = new int[55];
+        int posicion = 0;
+
+        // Rellenamos el array
+        for (int i = 1; i <= 10; i++) {
+
+            for (int j = 1; j <= i; j++) {
+                numeros[posicion] = i;
+                posicion++;
+            }
+        }
+
+        // Mostramos el array
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(numeros[i] + " ");
+        }
     }
 
     public static void ejercicio15(){
