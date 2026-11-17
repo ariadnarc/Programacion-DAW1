@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Map;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class App {
@@ -478,11 +479,32 @@ public class App {
     }
 
     public static void ejercicio15(){
-        
+        System.out.print("Introduce el primer valor: ");
+        int n = sc.nextInt();
+
+        System.out.print("Introduce el segundo valor: ");
+        int m = sc.nextInt();
+
+        int[] numeros = new int[n];
+        Arrays.fill(numeros, m);
+
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(numeros[i] + " ");
+        }
     }
 
     public static void ejercicio16(){
-        
+        int[] numeros = new int[55];
+
+        for(int i = 1; i <= 10; i++){
+            for(int j = 1; j <= i; j++){
+
+            }
+        }
+
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.print(numeros[i] + " ");
+        }
     }
 
     public static void ejercicio17(){
