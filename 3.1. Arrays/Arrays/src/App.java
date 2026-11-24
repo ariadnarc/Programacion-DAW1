@@ -542,14 +542,19 @@ public class App {
         double n = sc.nextDouble();
 
         boolean encontrado = false;
-        int ind = 0;
+        int veces = 0;
 
-        while(!encontrado){
-            if(nums[ind] == n) { encontrado = true; }
-            else ind++;
+        for (int i = 0; i < nums.length; i++){
+            if(nums[i] == n){
+                encontrado = true;
+                veces++;
+            }
         }
 
-        System.out.println("La cifra pertenece");
+        if(encontrado){
+            System.out.println("La cifra aparece " + veces + " veces.");
+        }
+        else System.out.println("La cifra no pertenece al array.");
     }
 
     // --- METODOS AUXILIARES ---
