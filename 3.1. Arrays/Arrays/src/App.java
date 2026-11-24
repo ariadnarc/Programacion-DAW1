@@ -512,7 +512,17 @@ public class App {
     }
 
     public static void ejercicio18(){
-        
+        double [] nums = new double[30];
+
+        for(int i = 0; i < nums.length; i++){
+            nums[i] = Math.random() * 100;
+        }
+
+        Arrays.sort(nums);
+
+        for(int i = 0; i < nums.length; i++){
+            System.out.print(nums[i] + " ");
+        }
     }
 
     public static void ejercicio19(){
