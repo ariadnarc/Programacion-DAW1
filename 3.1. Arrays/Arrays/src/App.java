@@ -516,11 +516,40 @@ public class App {
     }
 
     public static void ejercicio19(){
-        
+        int [] puntuaciones = new int[8];
+
+        for(int i = 0; i < 8; i++){
+            System.out.println("Introduzca la puntuación " + (i + 1) + ": ");
+            puntuaciones[i] = sc.nextInt();
+        }
+
+        Arrays.sort(puntuaciones);
+
+        System.out.println("El ranking es: ");
+        for(int i = puntuaciones.length - 1; i >= 0; i--){
+            System.out.println(puntuaciones[i] + " ");
+        }
     }
 
     public static void ejercicio20(){
+        double [] nums = new double[1000];
         
+        for(int i = 0; i < nums.length; i++){
+            nums[i] = Math.random() * 100;
+        }
+
+        System.out.println("¿Qué cifra desea consultar?");
+        double n = sc.nextDouble();
+
+        boolean encontrado = false;
+        int ind = 0;
+
+        while(!encontrado){
+            if(nums[ind] == n) { encontrado = true; }
+            else ind++;
+        }
+
+        System.out.println("La cifra pertenece");
     }
 
     // --- METODOS AUXILIARES ---
