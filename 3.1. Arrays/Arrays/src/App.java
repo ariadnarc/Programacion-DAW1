@@ -512,10 +512,10 @@ public class App {
     }
 
     public static void ejercicio18(){
-        double [] nums = new double[30];
+        int [] nums = new int[30];
 
         for(int i = 0; i < nums.length; i++){
-            nums[i] = Math.random() * 100;
+            nums[i] = (int)(Math.random() * 10);
         }
 
         Arrays.sort(nums);
@@ -542,14 +542,14 @@ public class App {
     }
 
     public static void ejercicio20(){
-        double [] nums = new double[1000];
+        int [] nums = new int[1000];
         
         for(int i = 0; i < nums.length; i++){
-            nums[i] = Math.random() * 100;
+            nums[i] = (int)(Math.random() * 100);
         }
 
         System.out.println("¿Qué cifra desea consultar?");
-        double n = sc.nextDouble();
+        int n = sc.nextInt();
 
         boolean encontrado = false;
         int veces = 0;
